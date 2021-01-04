@@ -154,8 +154,9 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
 
         for day in personal_user_day:
             enter = day
-            number_of_visited_spots = random.randint(1, number_of_visited_spots)
-            for visit in range(0, number_of_visited_spots, 1):
+            visits_in_spot = random.randint(1, number_of_visited_spots)
+
+            for visit in range(0, visits_in_spot, 1):
                 spot = choose_spot(hotspots)
                 exit = enter + get_rand_deltatime()
                 log = Log(log_init_id, spot.get_name(), userid, enter, exit, spot.get_id())
