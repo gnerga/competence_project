@@ -7,7 +7,7 @@ from models.HotSpot import HotSpot
 from models.Log import Log
 from models.RandHour import RandHour
 
-NUMBER_OF_USERS = 15000
+NUMBER_OF_USERS = 150
 
 
 def return_list_of_hot_spots(file):
