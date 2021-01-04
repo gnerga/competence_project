@@ -12,9 +12,9 @@ NUMBER_OF_USERS = 15
 def return_list_of_hot_spots(file):
     list_of_hot_spots = []
     df = pd.read_csv(file, delimiter=';', header=None)
-    index = 1
+
     for index, row in df.iterrows():
-        list_of_hot_spots.append(HotSpot(index, row[0], row[1], row[2], row[3], row[4]))
+        list_of_hot_spots.append(HotSpot(index+1, row[0], row[1], row[2], row[3], row[4]))
         index = index + 1
     return list_of_hot_spots
 
@@ -81,7 +81,13 @@ def get_init_rand_deltatime():
     s = random.randint(0, 59)
     ms = random.randint(0, 1000000)
 
-    return RandHour(h, m, s, ms)
+    # return RandHour(h, m, s, ms)
+    return datetime.timedelta(
+        hours=h,
+        minutes=m,
+        seconds=s,
+        microseconds=ms
+    )
 
 
 def get_rand_deltatime():
@@ -90,10 +96,27 @@ def get_rand_deltatime():
     s = random.randint(0, 59)
     ms = random.randint(0, 1000000)
 
-    return RandHour(hour=null, minute=m, second=s, microsecond=ms)
+    return datetime.timedelta(
+        minutes=m,
+        seconds=s,
+        microseconds=ms
+    )
+
+    # return RandHour(hour=null, minute=m, second=s, microsecond=ms)
+
+
+def choose_spot(hotspots):
+    index = random.randint(1, len(hotspots)-1)
+    return hotspots[index]
 
 
 def generate_log_files(number_of_users, hotspots, start_date, end_date, number_of_visited_spots=10):
+
+    if number_of_visited_spots < 1:
+        number_of_visited_spots = 1
+
+    log_init_id = 1
+
     list_of_logs = []
     n_days = (end_date - start_date).days
     list_of_days = [start_date]
@@ -103,32 +126,51 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
 
     for userid in range(1, number_of_users+1, 1):
         personal_user_day = []
-        print(userid)
 
         for day in list_of_days:
             dt = get_init_rand_deltatime()
-            personal_user_day.append(day + datetime.timedelta(
-                hours=dt.get_hour(),
-                minutes=dt.get_minute(),
-                seconds=dt.get_second(),
-                microseconds=dt.get_microsecond()
-            ))
+            personal_user_day.append(day + dt)
+            #                          datetime.timedelta(
+            #     hours=dt.get_hour(),
+            #     minutes=dt.get_minute(),
+            #     seconds=dt.get_second(),
+            #     microseconds=dt.get_microsecond()
+            # ))
 
-        print(personal_user_day)
+        for day in personal_user_day:
+            enter = day
+            number_of_visited_spots = random.randint(1, number_of_visited_spots)
+            for visit in range(0, number_of_visited_spots, 1):
+                spot = choose_spot(hotspots)
+                enter = day
+                exit = day + get_rand_deltatime()
+                log = Log(log_init_id, spot.get_name(), userid, enter, exit, spot.get_id())
+                list_of_logs.append(log)
+                enter = exit + get_rand_deltatime()
 
     return list_of_logs
 
+def log_to_csv(log, filename, headers):
+    data = []
+    for x in log:
+        data.append(x.to_list())
+
+    df = pd.DataFrame(data, columns=headers)
+    df.to_csv(filename, index=False, header=True)
 
 def main():
     start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0, microsecond=0)
     end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0, microsecond=0)
 
     hotspots = return_list_of_hot_spots('hotspot.csv')
-    users = generate_list_of_user(NUMBER_OF_USERS)
-    log = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
 
+    # users = generate_list_of_user(NUMBER_OF_USERS)
+    logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
+    for log in logs:
+        print(log.enter_time)
+        print(log.exit_time)
     # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
-    # data_to_csv(log, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
+    log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
 
 if __name__ == '__main__':
