@@ -1,12 +1,13 @@
 class Log:
 
-    def __init__(self, id, pois_id, user_id, enter_time, exit_time):
+    def __init__(self, id, pois_name , user_id, enter_time, exit_time, pois_id):
         self.id = id
-        self.pois_id = pois_id
+        self.pois_name = pois_name
         self.user_id = user_id
         self.enter_time = enter_time
         self.exit_time = exit_time
         self.duration = 0
+        self.pois_id = pois_id
 
     def get_pois_id(self):
         return self.pois_id

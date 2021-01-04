@@ -4,6 +4,9 @@ import pandas as pd
 from models.User import User
 from models.HotSpot import HotSpot
 from models.Log import Log
+from models.RandHour import RandHour
+
+NUMBER_OF_USERS = 15000
 
 
 def return_list_of_hot_spots(file):
@@ -62,24 +65,57 @@ def generate_list_of_user(number_of_user, student=0.8, teacher=0.15, staff=0.05)
     return list_of_user
 
 
-def user_to_csv(list_of_users, filename):
-    headers = ["Id", "PhoneNumber", "Profile"]
+def data_to_csv(list, filename, headers):
     data = []
-    for x in list_of_users:
+    for x in list:
         data.append(x.to_list())
 
     df = pd.DataFrame(data, columns=headers)
-    print(df)
     df.to_csv(filename, index=False, header=True)
 
 
-def main():
-    # list = return_list_of_hot_spots('hotspot.csv')
-    # a = generate_list_of_user(15000)
-    b = generate_list_of_user(150)
-    # c = generate_list_of_user(7500)
+def get_init_rand_hour():
+    university_open_hour = 0
+    university_close_hour = 15
 
-    user_to_csv(b, "user_150.csv")
+    h = random.randint(0, 8)
+    m = random.randint(0, 59)
+    s = random.randint(0, 59)
+    ms = random.randint(0, 1000000)
+
+    return RandHour(h, m, s, ms)
+
+
+def generate_log_files(number_of_users, hotspots, start_date, end_date, number_of_visited_spots=10):
+    list_of_logs = []
+    n_days = (end_date - start_date).days
+    list_of_days = [start_date]
+
+    for day in range(0, n_days, 1):
+        list_of_days.append(list_of_days[day] + datetime.timedelta(days=1))
+
+    for day in list_of_days:
+        dt = get_init_rand_hour()
+        day = day + datetime.timedelta(
+            hours=dt.get_hour(),
+            minutes=dt.get_minute(),
+            seconds=dt.get_second(),
+            microseconds=dt.get_microsecond()
+        )
+        print(day)
+
+    return list_of_logs
+
+
+def main():
+    start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0, microsecond=0)
+    end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0, microsecond=0)
+    hotspots = return_list_of_hot_spots('hotspot.csv')
+    users = generate_list_of_user(NUMBER_OF_USERS)
+    log = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
+
+    # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
+    # data_to_csv(log, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
 
 if __name__ == '__main__':
