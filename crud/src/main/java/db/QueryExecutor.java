@@ -55,6 +55,8 @@ public class QueryExecutor {
             var result = statement.getResultSet();
         } catch (SQLException e) {
             e.printStackTrace();
+
+            throw new RuntimeException("Could not execute query: " + query);
         }
     }
 }
