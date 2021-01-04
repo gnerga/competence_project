@@ -6,7 +6,7 @@ from models.HotSpot import HotSpot
 from models.Log import Log
 from models.RandHour import RandHour
 
-NUMBER_OF_USERS = 15000
+NUMBER_OF_USERS = 15
 
 
 def return_list_of_hot_spots(file):
@@ -74,9 +74,7 @@ def data_to_csv(list, filename, headers):
     df.to_csv(filename, index=False, header=True)
 
 
-def get_init_rand_hour():
-    university_open_hour = 0
-    university_close_hour = 15
+def get_init_rand_deltatime():
 
     h = random.randint(0, 8)
     m = random.randint(0, 59)
@@ -84,6 +82,15 @@ def get_init_rand_hour():
     ms = random.randint(0, 1000000)
 
     return RandHour(h, m, s, ms)
+
+
+def get_rand_deltatime():
+
+    m = random.randint(0, 59)
+    s = random.randint(0, 59)
+    ms = random.randint(0, 1000000)
+
+    return RandHour(hour=null, minute=m, second=s, microsecond=ms)
 
 
 def generate_log_files(number_of_users, hotspots, start_date, end_date, number_of_visited_spots=10):
@@ -94,15 +101,20 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
     for day in range(0, n_days, 1):
         list_of_days.append(list_of_days[day] + datetime.timedelta(days=1))
 
-    for day in list_of_days:
-        dt = get_init_rand_hour()
-        day = day + datetime.timedelta(
-            hours=dt.get_hour(),
-            minutes=dt.get_minute(),
-            seconds=dt.get_second(),
-            microseconds=dt.get_microsecond()
-        )
-        print(day)
+    for userid in range(1, number_of_users+1, 1):
+        personal_user_day = []
+        print(userid)
+
+        for day in list_of_days:
+            dt = get_init_rand_deltatime()
+            personal_user_day.append(day + datetime.timedelta(
+                hours=dt.get_hour(),
+                minutes=dt.get_minute(),
+                seconds=dt.get_second(),
+                microseconds=dt.get_microsecond()
+            ))
+
+        print(personal_user_day)
 
     return list_of_logs
 
@@ -110,6 +122,7 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
 def main():
     start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0, microsecond=0)
     end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0, microsecond=0)
+
     hotspots = return_list_of_hot_spots('hotspot.csv')
     users = generate_list_of_user(NUMBER_OF_USERS)
     log = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
