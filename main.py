@@ -79,9 +79,7 @@ def get_init_rand_deltatime():
     h = random.randint(0, 8)
     m = random.randint(0, 59)
     s = random.randint(0, 59)
-    # ms = random.randint(0, 1000000)
 
-    # return RandHour(h, m, s, ms)
     return datetime.timedelta(
         hours=h,
         minutes=m,
@@ -92,8 +90,17 @@ def get_init_rand_deltatime():
 
 def get_rand_deltatime():
 
-    m = random.randint(0, 59)
+    a = random.randint(0, 2)
+
+    if a == 0:
+        m = random.randint(0, 60)
+    if a == 1:
+        m = random.randint(0, 120)
+    if a == 2:
+        m = random.randint(0, 180)
+
     s = random.randint(0, 59)
+
     # ms = random.randint(0, 1000000)
 
     return datetime.timedelta(
@@ -106,7 +113,7 @@ def get_rand_deltatime():
 
 
 def choose_spot(hotspots):
-    index = random.randint(1, len(hotspots)-1)
+    index = random.randint(0, len(hotspots)-1)
     return hotspots[index]
 
 
@@ -150,10 +157,13 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
     return list_of_logs
 
 
-def log_to_csv(log, filename, headers):
+def log_to_csv(logs, filename, headers, duration=False):
     data = []
-    for x in log:
-        data.append(x.to_list())
+    for x in logs:
+        if duration:
+            data.append(x.to_list())
+        else:
+            data.append(x.to_list_without_duration())
 
     df = pd.DataFrame(data, columns=headers)
     df.to_csv(filename, index=False, header=True)
@@ -171,6 +181,10 @@ def main():
     # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
     log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
+    for log in logs:
+        log.count_duration()
+
+    log_to_csv(logs, filename="log_150_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
 
 if __name__ == '__main__':
     main()

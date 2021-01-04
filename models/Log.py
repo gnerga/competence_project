@@ -28,8 +28,10 @@ class Log:
         return self.duration
 
     def count_duration(self):
-        # todo no poprawić tutaj bo moze być źle
-        self.duration = self.exit_time - self.enter_time
+        self.duration = (self.exit_time - self.enter_time)
+
+    def to_list_without_duration(self):
+        return [self.user_id, self.pois_name, self.enter_time, self.exit_time]
 
     def to_list(self):
-        return [self.user_id, self.pois_name, self.enter_time, self.exit_time]
+        return [self.user_id, self.pois_name, self.enter_time, self.exit_time, self.duration]
