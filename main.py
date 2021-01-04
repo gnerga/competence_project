@@ -1,6 +1,7 @@
 import random
 import datetime
 import pandas as pd
+import numpy as np
 from models.User import User
 from models.HotSpot import HotSpot
 from models.Log import Log
@@ -113,7 +114,14 @@ def get_rand_deltatime():
 
 
 def choose_spot(hotspots):
-    index = random.randint(0, len(hotspots)-1)
+
+    test = np.random.exponential(0.5, size=len(hotspots))
+    x = max(test)
+    index = -1
+    for i in range(0, len(test)):
+        if x == test[i]:
+            index = i
+
     return hotspots[index]
 
 
@@ -170,23 +178,23 @@ def log_to_csv(logs, filename, headers, duration=False):
 
 
 def main():
-    # start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0)
-    # end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0)
-    #
-    # hotspots = return_list_of_hot_spots('hotspot.csv')
-    #
-    # # users = generate_list_of_user(NUMBER_OF_USERS)
-    # logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
-    #
-    # # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
-    # log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
-    #
-    # for log in logs:
-    #     log.count_duration()
-    #
-    # log_to_csv(logs, filename="log_150_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
+    start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0)
+    end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0)
 
-    print("B---->")
+    hotspots = return_list_of_hot_spots('hotspot.csv')
+
+    # users = generate_list_of_user(NUMBER_OF_USERS)
+    logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
+
+    # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
+    log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
+
+    for log in logs:
+        log.count_duration()
+
+    log_to_csv(logs, filename="log_150_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
+
+
 
 if __name__ == '__main__':
     main()
