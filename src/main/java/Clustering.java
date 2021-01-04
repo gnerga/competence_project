@@ -21,9 +21,7 @@ public class Clustering {
                 .config(sparkConf)
                 .getOrCreate();
         // Loads data.
-        Dataset<Row> dataset = spark.read().format("csv").option("sep", ",")
-                .option("inferSchema", "true")
-                .option("header", "false").load("./user_150.csv");
+        Dataset<Row> dataset = spark.read().format("libsvm").load("./sample_kmeans_data.txt");
 
 // Trains a k-means model.
         KMeans kmeans = new KMeans().setK(2).setSeed(1L);
