@@ -1,93 +1,9 @@
 import random
 import datetime
 import pandas as pd
-
-
-class User:
-
-    def __init__(self, user_id, phone_number, profile):
-        self.user_id = user_id
-        self.phone_number = phone_number
-        self.profile = profile
-
-    def get_id(self):
-        return self.user_id
-
-    def get_phone_number(self):
-        return self.phone_number
-
-    def profile(self):
-        return self.profile
-
-    def to_string(self):
-        print(self.user_id)
-        print(self.phone_number)
-        print(self.profile)
-
-    def to_list(self):
-        return [self.user_id, self.phone_number, self.profile]
-
-
-class Log:
-
-    def __init__(self, id, pois_id, user_id, enter_time, exit_time):
-        self.id = id
-        self.pois_id = pois_id
-        self.user_id = user_id
-        self.enter_time = enter_time
-        self.exit_time = exit_time
-        self.duration = 0
-
-    def get_pois_id(self):
-        return self.pois_id
-
-    def get_id(self):
-        return self.id
-
-    def get_user_id(self):
-        return self.user_id
-
-    def get_enter_time(self):
-        return self.enter_time
-
-    def get_exit_time(self):
-        return self.exit_time
-
-    def get_duration(self):
-        return self.duration
-
-    def count_duration(self):
-        # todo no poprawić tutaj bo moze być źle
-        self.duration = self.exit_time - self.enter_time
-
-
-class HotSpot:
-
-    def __init__(self, pois_id, pois_name, pois_description, longitude, latitude, spot_type):
-        self.pois_id = pois_id
-        self.pois_name = pois_name
-        self.pois_description = pois_description
-        self.longitude = longitude
-        self.latitude = latitude
-        self.spot_type = spot_type
-
-    def get_id(self):
-        return self.pois_id
-
-    def get_name(self):
-        return self.pois_name
-
-    def get_description(self):
-        return self.pois_description
-
-    def get_longitude(self):
-        return self.longitude
-
-    def get_latitude(self):
-        return self.latitude
-
-    def get_spot_type(self):
-        return self.spot_type
+from models.User import User
+from models.HotSpot import HotSpot
+from models.Log import Log
 
 
 def return_list_of_hot_spots(file):
@@ -164,7 +80,6 @@ def main():
     # c = generate_list_of_user(7500)
 
     user_to_csv(b, "user_150.csv")
-
 
 
 if __name__ == '__main__':
