@@ -7,7 +7,7 @@ from models.HotSpot import HotSpot
 from models.Log import Log
 from models.RandHour import RandHour
 
-NUMBER_OF_USERS = 15
+NUMBER_OF_USERS = 15000
 
 
 def return_list_of_hot_spots(file):
@@ -183,16 +183,16 @@ def main():
 
     hotspots = return_list_of_hot_spots('hotspot.csv')
 
-    # users = generate_list_of_user(NUMBER_OF_USERS)
+    users = generate_list_of_user(NUMBER_OF_USERS)
     logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
 
-    # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
-    log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
+    data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
+    log_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+".csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
     for log in logs:
         log.count_duration()
 
-    log_to_csv(logs, filename="log_150_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
+    log_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+"_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
 
 
 
