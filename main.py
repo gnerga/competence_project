@@ -79,14 +79,14 @@ def get_init_rand_deltatime():
     h = random.randint(0, 8)
     m = random.randint(0, 59)
     s = random.randint(0, 59)
-    ms = random.randint(0, 1000000)
+    # ms = random.randint(0, 1000000)
 
     # return RandHour(h, m, s, ms)
     return datetime.timedelta(
         hours=h,
         minutes=m,
         seconds=s,
-        microseconds=ms
+        # microseconds=ms
     )
 
 
@@ -94,12 +94,12 @@ def get_rand_deltatime():
 
     m = random.randint(0, 59)
     s = random.randint(0, 59)
-    ms = random.randint(0, 1000000)
+    # ms = random.randint(0, 1000000)
 
     return datetime.timedelta(
         minutes=m,
         seconds=s,
-        microseconds=ms
+        # microseconds=ms
     )
 
     # return RandHour(hour=null, minute=m, second=s, microsecond=ms)
@@ -142,13 +142,13 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
             number_of_visited_spots = random.randint(1, number_of_visited_spots)
             for visit in range(0, number_of_visited_spots, 1):
                 spot = choose_spot(hotspots)
-                enter = day
-                exit = day + get_rand_deltatime()
+                exit = enter + get_rand_deltatime()
                 log = Log(log_init_id, spot.get_name(), userid, enter, exit, spot.get_id())
                 list_of_logs.append(log)
                 enter = exit + get_rand_deltatime()
 
     return list_of_logs
+
 
 def log_to_csv(log, filename, headers):
     data = []
@@ -158,17 +158,16 @@ def log_to_csv(log, filename, headers):
     df = pd.DataFrame(data, columns=headers)
     df.to_csv(filename, index=False, header=True)
 
+
 def main():
-    start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0, microsecond=0)
-    end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0, microsecond=0)
+    start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0)
+    end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0)
 
     hotspots = return_list_of_hot_spots('hotspot.csv')
 
     # users = generate_list_of_user(NUMBER_OF_USERS)
     logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
-    for log in logs:
-        print(log.enter_time)
-        print(log.exit_time)
+
     # data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
     log_to_csv(logs, filename="log_150.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
