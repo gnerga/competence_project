@@ -46,4 +46,15 @@ public class QueryExecutor {
 
         throw new RuntimeException("Could not execute query: " + query);
     }
+
+    public void execute(String query){
+        var statement = DbConnectionFactory.getInstance().createStatement();
+
+        try {
+            statement.execute(query);
+            var result = statement.getResultSet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

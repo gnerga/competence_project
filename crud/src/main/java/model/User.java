@@ -22,4 +22,13 @@ public class User {
     public String getProfile() {
         return profile;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", profile='" + profile + '\'' +
+                '}';
+    }
 }

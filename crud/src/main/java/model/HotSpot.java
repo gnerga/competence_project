@@ -34,4 +34,15 @@ public class HotSpot {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "HotSpot{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
