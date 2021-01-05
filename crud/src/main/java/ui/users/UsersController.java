@@ -31,7 +31,7 @@ public class UsersController implements Runnable {
             return;
         }
 
-        responseResolver.resolve(execute(usersOperation));
+        print(responseResolver.resolve(execute(usersOperation)));
     }
 
     private OperationResponse execute(CrudOperation operation) {
@@ -66,11 +66,23 @@ public class UsersController implements Runnable {
     }
 
     private OperationResponse update() {
-        return null;
+        print("User id: ");
+        int id = cliReader.readInt("That's not an integer :/");
+        print(responseResolver.resolve(usersService.read(id)));
+
+        print("Phone number:");
+        String phoneNumber = cliReader.readString();
+        print("Profile");
+        String profile = cliReader.readString();
+
+        return usersService.update(id, phoneNumber, profile);
     }
 
     private OperationResponse delete() {
-        return null;
+        print("User id: ");
+        int id = cliReader.readInt("That's not an integer :/");
+
+        return usersService.delete(id);
     }
 
     private CrudOperation selectOperation() {
@@ -81,7 +93,7 @@ public class UsersController implements Runnable {
         print("");
         print("0. Back");
 
-        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 3, "That's not an integer :/", "That's not an option");
+        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 4, "That's not an integer :/", "That's not an option");
         switch (input) {
             case 1:
                 return CREATE;

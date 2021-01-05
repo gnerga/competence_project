@@ -17,7 +17,8 @@ public class UsersService {
     }
 
     public OperationResponse create(String phoneNumber, String profile) {
-        String query = "";
+        String query = "INSERT INTO `users`(`phone_number`, `profile`) " +
+                "VALUES (\"" + phoneNumber + "\",\"" + profile + "\")";
 
         executor.execute(query);
         return OperationResponse.success();
@@ -30,6 +31,20 @@ public class UsersService {
                 "WHERE id=" + id;
 
         Optional<User> result = executor.get(query, new UserTransformer());
+        return result.map(user -> OperationResponse.success(user.toString())).orElseGet(() -> OperationResponse.failure("User not found"));
+    }
+
+    public OperationResponse update(int id, String phoneNumber, String profile) {
+        String query = "UPDATE `users` SET `phone_number`=\"" + phoneNumber + "\",`profile`=\"" + profile + "\" WHERE id="+id;
+
+        executor.execute(query);
+        return OperationResponse.success();
+    }
+
+    public OperationResponse delete(int id) {
+        String query = "DELETE FROM `users` WHERE id="+id;
+
+        executor.execute(query);
         return OperationResponse.success();
     }
 
