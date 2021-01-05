@@ -1,4 +1,4 @@
-package ui.hotspots;
+package domain.hotspots;
 
 import java.util.Optional;
 

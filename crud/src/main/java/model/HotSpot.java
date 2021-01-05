@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class HotSpot {
     public final String name;
     public final String description;
@@ -47,6 +49,16 @@ public class HotSpot {
     }
 
     public enum Type {
-        INDOOR, OUTDOOR
+        INDOOR("Indoor"), OUTDOOR("Outdoor");
+
+        public final String dbValue;
+
+        Type(String dbValue) {
+            this.dbValue = dbValue;
+        }
+
+        public static Type of(String type) {
+            return Arrays.stream(values()).filter(t -> t.dbValue.equals(type)).findFirst().orElseThrow(() -> new RuntimeException("Unsupported hotspot type!" + type));
+        }
     }
 }

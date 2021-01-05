@@ -1,11 +1,17 @@
 package ui.hotspots;
 
+import db.QueryExecutor;
+import domain.hotspots.HotSpotCreateDto;
+import domain.hotspots.HotSpotService;
+import model.HotSpot;
 import model.HotSpot.Type;
 import ui.common.CrudOperation;
 import ui.common.OperationResponse;
 import ui.common.OperationResponseResolver;
 import ui.io.CLIReader;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static ui.common.CrudOperation.*;
@@ -15,10 +21,10 @@ public class HotSpotsController implements Runnable {
     private final CLIReader cliReader;
     private final HotSpotService service;
 
-    public HotSpotsController(OperationResponseResolver responseResolver, CLIReader cliReader, HotSpotService service) {
+    public HotSpotsController(OperationResponseResolver responseResolver, CLIReader cliReader, QueryExecutor queryExecutor) {
         this.cliReader = cliReader;
         this.responseResolver = responseResolver;
-        this.service = service;
+        this.service = new HotSpotService(queryExecutor);
     }
 
     @Override
@@ -32,7 +38,7 @@ public class HotSpotsController implements Runnable {
             return;
         }
 
-        responseResolver.resolve(execute(crudOperation));
+        print(responseResolver.resolve(execute(crudOperation)));
     }
 
     private OperationResponse execute(CrudOperation operation) {
@@ -66,7 +72,6 @@ public class HotSpotsController implements Runnable {
         print("Enter hotspot latitude in format XXX.XX, e.g. 80.74, -4.01: ");
         float latitude = cliReader.readFloat(floatInRange(-90.0f, 90f), "Value must be in range [-90; 90]", "Incorrect format!");
 
-        print("Select hotspot type: ");
         Type type = selectType();
 
         var dto = new HotSpotCreateDto(name, description, longitude, latitude, type);
@@ -95,7 +100,36 @@ public class HotSpotsController implements Runnable {
     }
 
     private OperationResponse read() {
-        return null;
+        print("");
+        print("Select what do you want to see:");
+        print("1. All hotspots");
+        print("2. Hotspot by its name");
+
+        int selectedType = cliReader.readInt((i) -> i == 1 || i == 2, "Select 1 or 2!", "That's not an integer!");
+
+        switch (selectedType) {
+            case 1:
+               return allHotspots();
+            case 2:
+                return findHotspot();
+        }
+
+        throw new IllegalStateException("No such read option!");
+    }
+
+    private OperationResponse allHotspots(){
+        List<HotSpot> hotspots = service.findAll();
+        hotspots.forEach(this::print);
+        return hotspots.isEmpty() ? OperationResponse.failure("No hotspots found!") : OperationResponse.success();
+    }
+
+    private OperationResponse findHotspot(){
+        print("Hotspot name:");
+        String name = cliReader.readString();
+        Optional<HotSpot> byName = service.findByName(name);
+        byName.ifPresent(this::print);
+
+        return byName.isPresent() ? OperationResponse.success() : OperationResponse.failure("No hotspot found!");
     }
 
     private OperationResponse update() {

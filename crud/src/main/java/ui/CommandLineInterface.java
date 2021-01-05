@@ -1,6 +1,8 @@
 package ui;
 
+import db.QueryExecutor;
 import ui.common.OperationResponseResolver;
+import ui.hotspots.HotSpotsController;
 import ui.io.CLIReader;
 import ui.users.UsersController;
 import ui.users.UsersService;
@@ -8,21 +10,29 @@ import ui.users.UsersService;
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;
     private final CLIReader cliReader;
+    private final QueryExecutor queryExecutor;
 
     public CommandLineInterface(OperationResponseResolver responseResolver, CLIReader cliReader) {
         this.responseResolver = responseResolver;
         this.cliReader = cliReader;
+        this.queryExecutor = new QueryExecutor();
     }
 
     @Override
     public void run() {
-        SelectedOption selectedOption = chooseAction();
-
-        switch (selectedOption) {
-            case MANAGE_USERS:
-                new UsersController(responseResolver, cliReader, new UsersService()).run();
-            case MANAGE_HOTSPOTS:
-                break;
+        while (true) {
+            SelectedOption selectedOption = chooseAction();
+            switch (selectedOption) {
+                case MANAGE_USERS:
+                    new UsersController(responseResolver, cliReader, new UsersService()).run();
+                    break;
+                case MANAGE_HOTSPOTS:
+                    new HotSpotsController(responseResolver, cliReader, queryExecutor).run();
+                    break;
+                case EXIT:
+                    return;
+            }
+            print("\n\n\n");
         }
     }
 

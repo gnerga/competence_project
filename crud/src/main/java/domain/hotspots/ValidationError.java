@@ -1,4 +1,4 @@
-package ui.hotspots;
+package domain.hotspots;
 
 class ValidationError {
     public final String reason;
