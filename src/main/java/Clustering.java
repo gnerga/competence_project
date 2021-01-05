@@ -18,6 +18,8 @@ import java.util.Collections;
 
 public class Clustering {
     final static String groupByColumn = "PoisName";
+    final static String featureColumn = "quantity";
+    final static String directoryNameToSave = "frequentUsers";
 
     public static void main(String[] args) {
 
@@ -40,11 +42,8 @@ public class Clustering {
                 .option("header", "true").load("./trace_duration.csv");
 
         dataset.show();
-//        Dataset<Row> rowDataset = dataset.withColumn("nazwa",dataset.col("nazwa").cast(DataType.fromDDL("StringType"))).withColumn(
-//                "features",dataset.col("features").cast(DataType.fromDDL("ArrayType(DoubleType)"))
-//        );
 
-        Dataset<Row> nazwa = dataset.groupBy(groupByColumn).count();
+        Dataset<Row> nazwa = dataset.groupBy(groupByColumn).sum("interval");
 
         Dataset<Row> rowDataset = nazwa.toDF(groupByColumn, "quantity");
 
@@ -59,29 +58,17 @@ public class Clustering {
                 "'features'");
         output.select("features", groupByColumn).show(false);
 
-//
-//        rowDataset.collect()
-
-//        rowDataset
-//
-//        rowDataset.foreach();
-//
-//        rowDataset.foreach();
-//
-//        rowDataset.foreach();
-//        Vectors.dense()
-
 // Trains a k-means model.
-        KMeans kmeans = new KMeans().setK(3).setSeed(1L).setFeaturesCol("features")
-                .setPredictionCol("prediction");
+        KMeans kmeans = new KMeans().setK(2).setSeed(1L).setFeaturesCol("features")
+                .setPredictionCol("predicted group");
         KMeansModel model = kmeans.fit(output);
         try {
-            model.write().overwrite().save("./k_means_model/frequentUsers");
+            model.write().overwrite().save("./k_means_model/" + directoryNameToSave);
         } catch (IOException ignored) {}
 
 // Make predictions
         Dataset<Row> predictions = model.transform(output);
-        predictions.show();
+        predictions.select(groupByColumn,featureColumn,"predicted group").show();
 
 // Evaluate clustering by computing Silhouette score
         ClusteringEvaluator evaluator = new ClusteringEvaluator();
