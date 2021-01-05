@@ -1,13 +1,14 @@
 import random
+import isodate
 import datetime
 import pandas as pd
 import numpy as np
 from models.User import User
 from models.HotSpot import HotSpot
-from models.Log import Log
+from models.Traces import Traces
 from models.RandHour import RandHour
 
-NUMBER_OF_USERS = 150
+NUMBER_OF_USERS = 15000
 
 
 def return_list_of_hot_spots(file):
@@ -159,16 +160,17 @@ def generate_log_files(number_of_users, hotspots, start_date, end_date, number_o
             for visit in range(0, visits_in_spot, 1):
                 spot = choose_spot(hotspots)
                 exit = enter + get_rand_deltatime()
-                log = Log(log_init_id, spot.get_name(), userid, enter, exit, spot.get_id())
+                log = Traces(log_init_id, spot.get_name(), userid, enter, exit, spot.get_id())
                 list_of_logs.append(log)
                 enter = exit + get_rand_deltatime()
 
     return list_of_logs
 
 
-def log_to_csv(logs, filename, headers, duration=False):
+def traces_to_csv(logs, filename, headers, duration=False):
     data = []
     for x in logs:
+        x.format_enter_and_exit_time_and_duration_to_iso_format()
         if duration:
             data.append(x.to_list())
         else:
@@ -181,19 +183,22 @@ def log_to_csv(logs, filename, headers, duration=False):
 def main():
     start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0)
     end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0)
-
+    # print(start_date)
+    # a = end_date - start_date
+    # print(isodate.duration_isoformat(end_date - start_date))
+    # print(start_date.isoformat())
     hotspots = return_list_of_hot_spots('hotspot.csv')
 
     users = generate_list_of_user(NUMBER_OF_USERS)
     logs = generate_log_files(NUMBER_OF_USERS, hotspots, start_date, end_date)
 
     data_to_csv(users, filename="user_"+str(NUMBER_OF_USERS)+".csv", headers=["Id", "PhoneNumber", "Profile"])
-    log_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+".csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
+    traces_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+".csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
     for log in logs:
         log.count_duration()
 
-    log_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+"_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
+    traces_to_csv(logs, filename="log_"+str(NUMBER_OF_USERS)+"_duration.csv", headers=["UserId", "PoisName", "EnterTime", "ExitTime","Duration"], duration=True)
 
 
 
