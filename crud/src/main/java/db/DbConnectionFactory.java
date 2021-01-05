@@ -17,6 +17,10 @@ public class DbConnectionFactory {
         return instance;
     }
 
+    public static void initialize(DbConfiguration configuration) {
+        instance = new DbConnectionFactory(configuration);
+    }
+
     public static void initialize(String jdbcUrl, String userName, String password) {
         var configuration = new DbConfiguration(jdbcUrl, userName, password);
         instance = new DbConnectionFactory(configuration);

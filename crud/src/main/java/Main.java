@@ -1,3 +1,6 @@
+import config.DbConfigResolver;
+import config.PropertiesLoader;
+import db.DbConfiguration;
 import db.DbConnectionFactory;
 import db.QueryExecutor;
 import db.ResultSetTransformer;
@@ -9,7 +12,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        DbConnectionFactory.initialize("jdbc:mysql://127.0.0.1:3307/GoodHotDog", "root", "");
+        initializeDbConnectionFactory();
 
         String selectUsers = "SELECT * FROM users;";
 
@@ -20,6 +23,12 @@ public class Main {
         CsvLoader loader = new CsvLoader();
         loader.loadCsvFile("/home/stanislawr/Pulpit/users.csv", "users");
         loader.loadCsvFile("/home/stanislawr/Pulpit/hotspots.csv", "hot_spots");
+    }
+
+    private static void initializeDbConnectionFactory() {
+        PropertiesLoader loader = new PropertiesLoader();
+        DbConfiguration dbConfiguration = new DbConfigResolver(loader).resolve();
+        DbConnectionFactory.initialize(dbConfiguration);
     }
 
     private final static class UserTransformer implements ResultSetTransformer<User> {
