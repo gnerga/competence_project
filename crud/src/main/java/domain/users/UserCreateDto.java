@@ -1,14 +1,12 @@
-package ui.users;
+package domain.users;
 
 import model.User;
 
-public class UserUpdateDto {
-    public final int id;
+public class UserCreateDto {
     public final String phoneNumber;
     public final User.Profile profile;
 
-    public UserUpdateDto(int id, String phoneNumber, User.Profile profile) {
-        this.id = id;
+    public UserCreateDto(String phoneNumber, User.Profile profile) {
         this.phoneNumber = phoneNumber;
         this.profile = profile;
     }

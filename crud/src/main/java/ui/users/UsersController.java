@@ -1,5 +1,8 @@
 package ui.users;
 
+import domain.users.UserCreateDto;
+import domain.users.UserUpdateDto;
+import domain.users.UsersService;
 import model.User;
 import ui.common.CrudOperation;
 import ui.common.OperationResponse;
@@ -53,7 +56,7 @@ public class UsersController implements Runnable {
 
     private OperationResponse create() {
         print("Phone number:");
-        String phoneNumber = cliReader.readString();
+        String phoneNumber = cliReader.readString((s) -> s.length()<=12 && s.length()>=9 && isNumeric(s), "That's not a phone number :/");
         print("Profile");
         User.Profile profile = selectProfile();
 
@@ -73,7 +76,7 @@ public class UsersController implements Runnable {
         print(responseResolver.resolve(usersService.read(id)));
 
         print("Phone number:");
-        String phoneNumber = cliReader.readString();
+        String phoneNumber = cliReader.readString((s) -> s.length()<=12 && s.length()>=9 && isNumeric(s), "That's not a phone number :/");
         print("Profile");
         User.Profile profile = selectProfile();
 
@@ -134,5 +137,17 @@ public class UsersController implements Runnable {
 
     private void print(Object object) {
         System.out.println(object);
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

@@ -5,7 +5,7 @@ import ui.common.OperationResponseResolver;
 import ui.hotspots.HotSpotsController;
 import ui.io.CLIReader;
 import ui.users.UsersController;
-import ui.users.UsersService;
+import domain.users.UsersService;
 
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;

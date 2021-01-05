@@ -1,4 +1,4 @@
-package ui.users;
+package domain.users;
 
 import db.QueryExecutor;
 import db.ResultSetTransformer;
@@ -29,7 +29,7 @@ public class UsersService {
                 "FROM users " +
                 "WHERE id=" + id;
 
-        Optional<User> result = executor.get(query, new UserTransformer());
+        Optional<User> result = executor.get(query, new UserResultSetMapper());
         return result.map(user -> OperationResponse.success(user.toString())).orElseGet(() -> OperationResponse.failure("User not found"));
     }
 
@@ -45,17 +45,5 @@ public class UsersService {
 
         executor.execute(query);
         return OperationResponse.success();
-    }
-
-    private final static class UserTransformer implements ResultSetTransformer<User> {
-
-        @Override
-        public User transform(ResultSet rs) throws SQLException {
-            int id = rs.getInt("id");
-            String phoneNumber = rs.getString("phone_number");
-            User.Profile profile = User.Profile.valueOfLabel(rs.getString("profile"));
-
-            return new User(id, phoneNumber, profile);
-        }
     }
 }

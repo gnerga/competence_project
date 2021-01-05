@@ -76,6 +76,18 @@ public class CLIReader {
         return readLine();
     }
 
+    public String readString(Predicate<String> validator, String validationMessage) {
+        while (true) {
+            String string = readLine();
+            if (validator.test(string)) {
+                return string;
+            } else {
+                System.out.println(validationMessage);
+            }
+        }
+    }
+
+
     private String readLine() {
         Scanner in = new Scanner(System.in);
         return in.nextLine().trim();
