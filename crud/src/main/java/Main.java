@@ -4,12 +4,14 @@ import db.DbConfiguration;
 import db.DbConnectionFactory;
 import db.QueryExecutor;
 import db.ResultSetTransformer;
-import db.io.CsvExporter;
-import db.io.CsvLoader;
 import model.User;
+import ui.CLIReader;
+import ui.CommandLineInterface;
+import ui.OperationResponseResolver;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.CompletableFuture;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,15 +21,18 @@ public class Main {
 
         QueryExecutor executor = new QueryExecutor();
         executor.getList(selectUsers, new UserTransformer()).forEach(System.out::println);
-       // executor.get(selectUsers, new UserTransformer()).ifPresent(System.out::println);
+        CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader());
+        CompletableFuture<Void> cliThread = CompletableFuture.runAsync(cli);
+        cliThread.join();
+        // executor.get(selectUsers, new UserTransformer()).ifPresent(System.out::println);
 
-        CsvLoader loader = new CsvLoader();
-        loader.loadCsvFile("/home/stanislawr/Pulpit/users.csv", "users");
-        loader.loadCsvFile("/home/stanislawr/Pulpit/hotspots.csv", "hot_spots");
-
-        CsvExporter exporter = new CsvExporter();
-        exporter.exportTableToCsv("/home/stanislawr/Pulpit/usersExport.csv", "users");
-        exporter.exportTableToCsv("/home/stanislawr/Pulpit/hotspotsExport.csv", "hot_spots");
+//        CsvLoader loader = new CsvLoader();
+//        loader.loadCsvFile("/home/stanislawr/Pulpit/users.csv", "users");
+//        loader.loadCsvFile("/home/stanislawr/Pulpit/hotspots.csv", "hot_spots");
+//
+//        CsvExporter exporter = new CsvExporter();
+//        exporter.exportTableToCsv("/home/stanislawr/Pulpit/usersExport.csv", "users");
+//        exporter.exportTableToCsv("/home/stanislawr/Pulpit/hotspotsExport.csv", "hot_spots");
     }
 
     private static void initializeDbConnectionFactory() {

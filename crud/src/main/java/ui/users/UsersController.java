@@ -14,6 +14,7 @@ public class UsersController implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("siema");
         UsersOperation userOption = selectOperation();
         handleOperation(userOption);
     }

@@ -4,9 +4,11 @@ import ui.users.UsersController;
 
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;
+    private final CLIReader cliReader;
 
-    public CommandLineInterface(OperationResponseResolver responseResolver) {
+    public CommandLineInterface(OperationResponseResolver responseResolver, CLIReader cliReader) {
         this.responseResolver = responseResolver;
+        this.cliReader = cliReader;
     }
 
     @Override
@@ -19,10 +21,19 @@ public class CommandLineInterface implements Runnable {
             case MANAGE_HOTSPOTS:
                 break;
         }
-
     }
 
     private SelectedOption chooseAction() {
-        return null;
+        print("1. Manage users");
+        print("2. Manage hotspots");
+        print("");
+        print("0. Exit");
+
+        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 3, "That's not an integer :/", "That's not an option");
+        return SelectedOption.of(input);
+    }
+
+    private void print(Object object) {
+        System.out.println(object);
     }
 }
