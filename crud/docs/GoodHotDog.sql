@@ -27,7 +27,8 @@ CREATE TABLE `hot_spots` (
   `description` varchar(255) DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `latitude` float DEFAULT NULL,
-  `type` varchar(20) DEFAULT NULL
+  `type` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
