@@ -1,3 +1,4 @@
+import anonymization.Anonymizer;
 import config.DbConfigResolver;
 import config.PropertiesLoader;
 import db.DbConfiguration;
@@ -13,8 +14,11 @@ public class Main {
     public static void main(String[] args) {
         initializeDbConnectionFactory();
 
-        CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader());
-        CompletableFuture.runAsync(cli).join();
+        //CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader());
+        //CompletableFuture.runAsync(cli).join();
+
+        Anonymizer anonymizer = new Anonymizer();
+        anonymizer.anonymize();
     }
 
     private static void initializeDbConnectionFactory() {
