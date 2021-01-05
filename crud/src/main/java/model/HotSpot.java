@@ -5,9 +5,9 @@ public class HotSpot {
     public final String description;
     public final float longitude;
     public final float latitude;
-    public final String type;
+    public final Type type;
 
-    public HotSpot(String name, String description, float longitude, float latitude, String type) {
+    public HotSpot(String name, String description, float longitude, float latitude, Type type) {
         this.name = name;
         this.description = description;
         this.longitude = longitude;
@@ -31,7 +31,7 @@ public class HotSpot {
         return latitude;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
@@ -44,5 +44,9 @@ public class HotSpot {
                 ", latitude=" + latitude +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    public enum Type {
+        INDOOR, OUTDOOR
     }
 }

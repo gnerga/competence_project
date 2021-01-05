@@ -18,9 +18,14 @@ public class Main {
         initializeDbConnectionFactory();
 
         String selectUsers = "SELECT * FROM users;";
-
+        String insertUser = "INSERT INTO users (phone_number, profile) VALUES ('654654654', 'siema')";
         QueryExecutor executor = new QueryExecutor();
         executor.getList(selectUsers, new UserTransformer()).forEach(System.out::println);
+        System.out.println(executor.insert(insertUser));
+        System.out.println(executor.insert(insertUser));
+        System.out.println(executor.insert(insertUser));
+        System.out.println(executor.insert(insertUser));
+        System.out.println(executor.insert(insertUser));
         CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader());
         CompletableFuture<Void> cliThread = CompletableFuture.runAsync(cli);
         cliThread.join();
