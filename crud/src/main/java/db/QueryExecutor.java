@@ -3,9 +3,7 @@ package db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class QueryExecutor {
     public <T> List<T> getList(String query, ResultSetTransformer<T> transformer) {
@@ -49,14 +47,13 @@ public class QueryExecutor {
         throw new RuntimeException("Could not execute query: " + query);
     }
 
-    public int insert(String insertQuery) {
+    public Optional<Integer> insert(String insertQuery) {
         var statement = DbConnectionFactory.getInstance().createStatement();
 
         try {
             statement.executeUpdate(insertQuery, Statement.RETURN_GENERATED_KEYS);
             var resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            return resultSet.getInt(1);
+            return resultSet.next() ? Optional.of(resultSet.getInt(1)) : Optional.empty();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Could not insert query: " + insertQuery);

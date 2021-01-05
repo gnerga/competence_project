@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `hot_spots`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hot_spots` (
-  `name` varchar(30) DEFAULT NULL,
+  `name` varchar(30) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `latitude` float DEFAULT NULL,
@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `fake_users`;
 CREATE TABLE `fake_users` (
   `id` int(11) NOT NULL,
   `phone_number` varchar(12) DEFAULT NULL,
-  `profile` int(20) DEFAULT NULL
+  `profile` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

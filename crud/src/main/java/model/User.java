@@ -32,16 +32,20 @@ public class User {
                 '}';
     }
 
+    public User withPhoneNumber(String newPhoneNumber) {
+        return new User(id, newPhoneNumber, profile);
+    }
+
     public enum Profile {
         STUDENT("Student"), TEACHER("Teacher"), SERVICE_STAFF("ServiceStaff");
 
         private final String value;
 
-        private Profile(String value){
+        Profile(String value) {
             this.value = value;
         }
 
-        public String getValue(){
+        public String getValue() {
             return this.value;
         }
 
