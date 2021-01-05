@@ -4,6 +4,7 @@ import db.DbConfiguration;
 import db.DbConnectionFactory;
 import db.QueryExecutor;
 import db.ResultSetTransformer;
+import db.io.CsvExporter;
 import db.io.CsvLoader;
 import model.User;
 
@@ -23,6 +24,10 @@ public class Main {
         CsvLoader loader = new CsvLoader();
         loader.loadCsvFile("/home/stanislawr/Pulpit/users.csv", "users");
         loader.loadCsvFile("/home/stanislawr/Pulpit/hotspots.csv", "hot_spots");
+
+        CsvExporter exporter = new CsvExporter();
+        exporter.exportTableToCsv("/home/stanislawr/Pulpit/usersExport.csv", "users");
+        exporter.exportTableToCsv("/home/stanislawr/Pulpit/hotspotsExport.csv", "hot_spots");
     }
 
     private static void initializeDbConnectionFactory() {

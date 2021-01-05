@@ -1,5 +1,6 @@
 package db;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +53,24 @@ public class QueryExecutor {
 
         try {
             statement.execute(query);
-            var result = statement.getResultSet();
+            statement.getResultSet();
         } catch (SQLException e) {
             e.printStackTrace();
 
             throw new RuntimeException("Could not execute query: " + query);
         }
+    }
+
+    public ResultSet getResultSet(String query){
+        var statement = DbConnectionFactory.getInstance().createStatement();
+
+        try {
+            statement.execute(query);
+            return statement.getResultSet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        throw new RuntimeException("Could not execute query: " + query);
     }
 }
