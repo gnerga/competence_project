@@ -20,6 +20,31 @@ public class HotSpotService {
         return validator.validate(dto).map(error -> OperationResponse.failure(error.reason)).orElse(createHotspot(dto));
     }
 
+    public OperationResponse update(String oldName, HotSpotCreateDto dto) {
+        return validator.validate(dto).map(error -> OperationResponse.failure(error.reason)).orElse(updateHotspot(oldName, dto));
+    }
+
+    public List<HotSpot> findAll() {
+        String query = "SELECT * FROM hot_spots";
+        return queryExecutor.getList(query, new HotSpotResultSetMapper());
+    }
+
+    public Optional<HotSpot> findByName(String name) {
+        String query = "SELECT * FROM hot_spots WHERE name = " + string(name);
+        return queryExecutor.get(query, new HotSpotResultSetMapper());
+    }
+
+    public OperationResponse delete(String name) {
+        String query = "DELETE FROM hot_spots WHERE name = " + string(name);
+        try {
+            queryExecutor.execute(query);
+            return OperationResponse.success("Hotspot deleted!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return OperationResponse.failure("Could not delete this hotspot!");
+        }
+    }
+
     private OperationResponse createHotspot(HotSpotCreateDto validDto) {
         try {
             String insert = "INSERT INTO hot_spots (name, description, longitude, latitude, type)"
@@ -31,14 +56,21 @@ public class HotSpotService {
         }
     }
 
-    public List<HotSpot> findAll() {
-        String query = "SELECT * FROM hot_spots";
-        return queryExecutor.getList(query, new HotSpotResultSetMapper());
-    }
+    private OperationResponse updateHotspot(String oldName, HotSpotCreateDto dto) {
+        try {
+            String update = "UPDATE hot_spots SET" +
+                    " name = " + string(dto.name) +
+                    ", description = " + string(dto.description) +
+                    ", longitude = " + dto.longitude +
+                    ", latitude = " + dto.latitude +
+                    ", type = " + string(dto.type.dbValue) +
+                    " WHERE name = " + string(oldName);
 
-    public Optional<HotSpot> findByName(String name) {
-        String query = "SELECT * FROM hot_spots WHERE name = " + string(name);
-        return queryExecutor.get(query, new HotSpotResultSetMapper());
+            queryExecutor.execute(update);
+            return OperationResponse.success("Hotspot created successfully!");
+        } catch (RuntimeException e) {
+            return OperationResponse.failure(e.getMessage());
+        }
     }
 
     private String toSqlValues(HotSpotCreateDto dto) {

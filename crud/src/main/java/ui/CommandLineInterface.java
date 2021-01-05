@@ -1,11 +1,12 @@
 package ui;
 
 import db.QueryExecutor;
+import domain.users.UsersService;
 import ui.common.OperationResponseResolver;
 import ui.hotspots.HotSpotsController;
 import ui.io.CLIReader;
+import ui.io.IntInRangeValidator;
 import ui.users.UsersController;
-import domain.users.UsersService;
 
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;
@@ -42,7 +43,7 @@ public class CommandLineInterface implements Runnable {
         print("");
         print("0. Exit");
 
-        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 3, "That's not an integer :/", "That's not an option");
+        int input = cliReader.readInt(new IntInRangeValidator(0, 2), "That's not an integer :/");
         return SelectedOption.of(input);
     }
 

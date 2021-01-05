@@ -27,24 +27,24 @@ public class CLIReader {
         }
     }
 
-    public int readInt(Predicate<Integer> validator, String validationMessage, String errorMessage) {
+    public int readInt(InputValidator<Integer> validator, String errorMessage) {
         while (true) {
             int integer = readInt(errorMessage);
-            if (validator.test(integer)) {
+            if (validator.isValid(integer)) {
                 return integer;
             } else {
-                System.out.println(validationMessage);
+                System.out.println(validator.getValidationMessage());
             }
         }
     }
 
-    public int readInt(Predicate<Integer> validator, String validationMessage, Function<String, String> errorMessage) {
+    public int readInt(InputValidator<Integer> validator, Function<String, String> errorMessage) {
         while (true) {
             int integer = readInt(errorMessage);
-            if (validator.test(integer)) {
+            if (validator.isValid(integer)) {
                 return integer;
             } else {
-                System.out.println(validationMessage);
+                System.out.println(validator.getValidationMessage());
             }
         }
     }
@@ -60,14 +60,14 @@ public class CLIReader {
         }
     }
 
-    public float readFloat(Predicate<Float> validator, String validationMessage, String errorMessage) {
+    public float readFloat(InputValidator<Float> validator, String errorMessage) {
         while (true) {
             float parsedFloat = readFloat(errorMessage);
 
-            if (validator.test(parsedFloat)) {
+            if (validator.isValid(parsedFloat)) {
                 return parsedFloat;
             } else {
-                System.out.println(validationMessage);
+                System.out.println(validator.getValidationMessage());
             }
         }
     }

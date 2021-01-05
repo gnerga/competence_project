@@ -8,6 +8,7 @@ import ui.common.CrudOperation;
 import ui.common.OperationResponse;
 import ui.common.OperationResponseResolver;
 import ui.io.CLIReader;
+import ui.io.IntInRangeValidator;
 
 import static ui.common.CrudOperation.*;
 
@@ -25,7 +26,6 @@ public class UsersController implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("siema");
         CrudOperation crudOperation = selectOperation();
         handleOperation(crudOperation);
     }
@@ -56,7 +56,7 @@ public class UsersController implements Runnable {
 
     private OperationResponse create() {
         print("Phone number:");
-        String phoneNumber = cliReader.readString((s) -> s.length()<=12 && s.length()>=9 && isNumeric(s), "That's not a phone number :/");
+        String phoneNumber = cliReader.readString((s) -> s.length() <= 12 && s.length() >= 9 && isNumeric(s), "That's not a phone number :/");
         print("Profile");
         User.Profile profile = selectProfile();
 
@@ -76,7 +76,7 @@ public class UsersController implements Runnable {
         print(responseResolver.resolve(usersService.read(id)));
 
         print("Phone number:");
-        String phoneNumber = cliReader.readString((s) -> s.length()<=12 && s.length()>=9 && isNumeric(s), "That's not a phone number :/");
+        String phoneNumber = cliReader.readString((s) -> s.length() <= 12 && s.length() >= 9 && isNumeric(s), "That's not a phone number :/");
         print("Profile");
         User.Profile profile = selectProfile();
 
@@ -97,7 +97,7 @@ public class UsersController implements Runnable {
         print("2. Teacher");
         print("3. Service staff");
 
-        int selectedType = cliReader.readInt((i) -> i>0 && i<4, "Select 1, 2 or 3!", "That's not an integer!");
+        int selectedType = cliReader.readInt(new IntInRangeValidator(1, 3), "That's not an integer!");
 
         switch (selectedType) {
             case 1:
@@ -119,7 +119,7 @@ public class UsersController implements Runnable {
         print("");
         print("0. Back");
 
-        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 4, "That's not an integer :/", "That's not an option");
+        int input = cliReader.readInt(new IntInRangeValidator(0, 4), "That's not an option");
         switch (input) {
             case 1:
                 return CREATE;
