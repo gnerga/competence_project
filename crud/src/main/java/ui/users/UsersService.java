@@ -16,14 +16,13 @@ public class UsersService {
         this.executor = new QueryExecutor();
     }
 
-    public OperationResponse create(String phoneNumber, String profile) {
+    public OperationResponse create(UserCreateDto dto) {
         String query = "INSERT INTO `users`(`phone_number`, `profile`) " +
-                "VALUES (\"" + phoneNumber + "\",\"" + profile + "\")";
+                "VALUES (\"" + dto.phoneNumber + "\",\"" + dto.profile.getValue() + "\")";
 
-        executor.execute(query);
+        executor.insert(query);
         return OperationResponse.success();
     }
-
 
     public OperationResponse read(int id) {
         String query = "SELECT * " +
@@ -34,8 +33,8 @@ public class UsersService {
         return result.map(user -> OperationResponse.success(user.toString())).orElseGet(() -> OperationResponse.failure("User not found"));
     }
 
-    public OperationResponse update(int id, String phoneNumber, String profile) {
-        String query = "UPDATE `users` SET `phone_number`=\"" + phoneNumber + "\",`profile`=\"" + profile + "\" WHERE id="+id;
+    public OperationResponse update(UserUpdateDto dto) {
+        String query = "UPDATE `users` SET `phone_number`=\"" + dto.phoneNumber + "\",`profile`=\"" + dto.profile.getValue() + "\" WHERE id="+dto.id;
 
         executor.execute(query);
         return OperationResponse.success();
@@ -54,7 +53,7 @@ public class UsersService {
         public User transform(ResultSet rs) throws SQLException {
             int id = rs.getInt("id");
             String phoneNumber = rs.getString("phone_number");
-            String profile = rs.getString("profile");
+            User.Profile profile = User.Profile.valueOfLabel(rs.getString("profile"));
 
             return new User(id, phoneNumber, profile);
         }

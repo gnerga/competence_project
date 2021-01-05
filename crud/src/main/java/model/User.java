@@ -3,9 +3,9 @@ package model;
 public class User {
     public final int id;
     public final String phoneNumber;
-    public final String profile;
+    public final Profile profile;
 
-    public User(int id, String phoneNumber, String profile) {
+    public User(int id, String phoneNumber, Profile profile) {
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.profile = profile;
@@ -19,7 +19,7 @@ public class User {
         return phoneNumber;
     }
 
-    public String getProfile() {
+    public Profile getProfile() {
         return profile;
     }
 
@@ -28,7 +28,30 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", profile='" + profile + '\'' +
+                ", profile='" + profile.getValue() + '\'' +
                 '}';
+    }
+
+    public enum Profile {
+        STUDENT("Student"), TEACHER("Teacher"), SERVICE_STAFF("ServiceStaff");
+
+        private final String value;
+
+        private Profile(String value){
+            this.value = value;
+        }
+
+        public String getValue(){
+            return this.value;
+        }
+
+        public static Profile valueOfLabel(String label) {
+            for (Profile e : values()) {
+                if (e.value.equals(label)) {
+                    return e;
+                }
+            }
+            return null;
+        }
     }
 }

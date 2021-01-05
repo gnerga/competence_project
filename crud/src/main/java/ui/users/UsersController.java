@@ -1,5 +1,6 @@
 package ui.users;
 
+import model.User;
 import ui.common.CrudOperation;
 import ui.common.OperationResponse;
 import ui.common.OperationResponseResolver;
@@ -54,9 +55,10 @@ public class UsersController implements Runnable {
         print("Phone number:");
         String phoneNumber = cliReader.readString();
         print("Profile");
-        String profile = cliReader.readString();
+        User.Profile profile = selectProfile();
 
-        return usersService.create(phoneNumber, profile);
+        UserCreateDto dto = new UserCreateDto(phoneNumber, profile);
+        return usersService.create(dto);
     }
 
     private OperationResponse read() {
@@ -73,9 +75,10 @@ public class UsersController implements Runnable {
         print("Phone number:");
         String phoneNumber = cliReader.readString();
         print("Profile");
-        String profile = cliReader.readString();
+        User.Profile profile = selectProfile();
 
-        return usersService.update(id, phoneNumber, profile);
+        UserUpdateDto dto = new UserUpdateDto(id, phoneNumber, profile);
+        return usersService.update(dto);
     }
 
     private OperationResponse delete() {
@@ -83,6 +86,26 @@ public class UsersController implements Runnable {
         int id = cliReader.readInt("That's not an integer :/");
 
         return usersService.delete(id);
+    }
+
+    private User.Profile selectProfile() {
+        print("Select hotspot type:");
+        print("1. Student");
+        print("2. Teacher");
+        print("3. Service staff");
+
+        int selectedType = cliReader.readInt((i) -> i>0 && i<4, "Select 1, 2 or 3!", "That's not an integer!");
+
+        switch (selectedType) {
+            case 1:
+                return User.Profile.STUDENT;
+            case 2:
+                return User.Profile.TEACHER;
+            case 3:
+                return User.Profile.SERVICE_STAFF;
+        }
+
+        throw new IllegalStateException("Type should've been selected already!");
     }
 
     private CrudOperation selectOperation() {
