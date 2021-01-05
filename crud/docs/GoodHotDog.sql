@@ -55,4 +55,26 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+--
+-- Struktura tabeli dla tabeli `fake_users`
+--
+
+DROP TABLE IF EXISTS `fake_users`;
+CREATE TABLE `fake_users` (
+  `id` int(11) NOT NULL,
+  `phone_number` varchar(12) DEFAULT NULL,
+  `profile` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Struktura tabeli dla tabeli `lookup_table`
+--
+
+DROP TABLE IF EXISTS `lookup_table`;
+CREATE TABLE `lookup_table` (
+  `phone_number` varchar(12) NOT NULL,
+  `fake_phone_number` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Dump completed on 2021-01-04 23:12:52
