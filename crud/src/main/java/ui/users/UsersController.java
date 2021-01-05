@@ -1,15 +1,19 @@
 package ui.users;
 
+import model.User;
+import ui.CLIReader;
 import ui.OperationResponse;
 import ui.OperationResponseResolver;
 
-import static ui.users.UsersOperation.BACK;
+import static ui.users.UsersOperation.*;
 
 public class UsersController implements Runnable {
     private final OperationResponseResolver responseResolver;
+    private final CLIReader cliReader;
 
-    public UsersController(OperationResponseResolver responseResolver) {
+    public UsersController(OperationResponseResolver responseResolver, CLIReader cliReader) {
         this.responseResolver = responseResolver;
+        this.cliReader = cliReader;
     }
 
     @Override
@@ -60,6 +64,30 @@ public class UsersController implements Runnable {
     }
 
     private UsersOperation selectOperation() {
-        return null;
+        print("1. Create user");
+        print("2. Read user");
+        print("3. Update user");
+        print("4. Delete user");
+        print("");
+        print("0. Back");
+
+        int input = cliReader.readInt(integer -> integer >= 0 && integer <= 3, "That's not an integer :/", "That's not an option");
+        switch (input) {
+            case 1:
+                return CREATE;
+            case 2:
+                return READ;
+            case 3:
+                return UPDATE;
+            case 4:
+                return DELETE;
+            default:
+                return BACK;
+        }
+
+    }
+
+    private void print(Object object) {
+        System.out.println(object);
     }
 }

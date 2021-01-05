@@ -17,7 +17,7 @@ public class CommandLineInterface implements Runnable {
 
         switch (selectedOption) {
             case MANAGE_USERS:
-                new UsersController(responseResolver).run();
+                new UsersController(responseResolver, cliReader).run();
             case MANAGE_HOTSPOTS:
                 break;
         }
