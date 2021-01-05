@@ -1,6 +1,5 @@
 package ui.users;
 
-import model.User;
 import ui.CLIReader;
 import ui.OperationResponse;
 import ui.OperationResponseResolver;
@@ -10,10 +9,12 @@ import static ui.users.UsersOperation.*;
 public class UsersController implements Runnable {
     private final OperationResponseResolver responseResolver;
     private final CLIReader cliReader;
+    private final UsersService usersService;
 
-    public UsersController(OperationResponseResolver responseResolver, CLIReader cliReader) {
+    public UsersController(OperationResponseResolver responseResolver, CLIReader cliReader, UsersService usersService) {
         this.responseResolver = responseResolver;
         this.cliReader = cliReader;
+        this.usersService = usersService;
     }
 
     @Override
@@ -48,11 +49,18 @@ public class UsersController implements Runnable {
 
 
     private OperationResponse create() {
-        return null;
+        print("Phone number:");
+        String phoneNumber = cliReader.readString();
+        print("Profile");
+        String profile = cliReader.readString();
+
+        return usersService.create(phoneNumber, profile);
     }
 
     private OperationResponse read() {
-        return null;
+        print("User id: ");
+        int id = cliReader.readInt("That's not an integer :/");
+        return usersService.read(id);
     }
 
     private OperationResponse update() {

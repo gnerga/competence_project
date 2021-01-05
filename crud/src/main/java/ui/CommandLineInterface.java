@@ -1,6 +1,7 @@
 package ui;
 
 import ui.users.UsersController;
+import ui.users.UsersService;
 
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;
@@ -17,7 +18,7 @@ public class CommandLineInterface implements Runnable {
 
         switch (selectedOption) {
             case MANAGE_USERS:
-                new UsersController(responseResolver, cliReader).run();
+                new UsersController(responseResolver, cliReader, new UsersService()).run();
             case MANAGE_HOTSPOTS:
                 break;
         }

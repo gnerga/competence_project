@@ -49,6 +49,10 @@ public class CLIReader {
         }
     }
 
+    public String readString(){
+        return readLine();
+    }
+
     private String readLine() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
