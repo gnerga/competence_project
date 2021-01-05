@@ -3,10 +3,14 @@ import org.apache.spark.SparkContext;
 import org.apache.spark.ml.clustering.KMeansModel;
 import org.apache.spark.ml.clustering.KMeans;
 import org.apache.spark.ml.evaluation.ClusteringEvaluator;
+import org.apache.spark.ml.feature.VectorAssembler;
 import org.apache.spark.ml.linalg.Vector;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.ml.linalg.Vectors;
+import org.apache.spark.sql.*;
+import org.apache.spark.sql.types.DataType;
+import org.apache.spark.sql.types.StructType;
+
+import java.util.Collections;
 
 
 public class Clustering {
@@ -21,14 +25,48 @@ public class Clustering {
                 .config(sparkConf)
                 .getOrCreate();
         // Loads data.
-        Dataset<Row> dataset = spark.read().format("libsvm").load("./sample_kmeans_data.txt");
+        Dataset<Row> dataset = spark.read().format("csv")
+                .option("sep", ",")
+                .option("inferSchema", "true")
+                .option("header", "true").load("./data.csv");
+
+        dataset.show();
+//        Dataset<Row> rowDataset = dataset.withColumn("nazwa",dataset.col("nazwa").cast(DataType.fromDDL("StringType"))).withColumn(
+//                "features",dataset.col("features").cast(DataType.fromDDL("ArrayType(DoubleType)"))
+//        );
+
+        Dataset<Row> nazwa = dataset.groupBy("nazwa").count();
+
+        Dataset<Row> rowDataset = nazwa.toDF("nazwa", "quantity");
+
+        VectorAssembler assembler = new VectorAssembler()
+                .setInputCols(new String[]{"quantity"})
+                .setOutputCol("features");
+
+        Dataset<Row> output = assembler.transform(rowDataset);
+        System.out.println("Assembled columns 'hour', 'mobile', 'userFeatures' to vector column " +
+                "'features'");
+        output.select("features", "nazwa").show(false);
+
+        Dataset<Row> featuresOut = output.select("features");
+//
+//        rowDataset.collect()
+
+//        rowDataset
+//
+//        rowDataset.foreach();
+//
+//        rowDataset.foreach();
+//
+//        rowDataset.foreach();
+//        Vectors.dense()
 
 // Trains a k-means model.
         KMeans kmeans = new KMeans().setK(2).setSeed(1L);
-        KMeansModel model = kmeans.fit(dataset);
+        KMeansModel model = kmeans.fit(featuresOut);
 
 // Make predictions
-        Dataset<Row> predictions = model.transform(dataset);
+        Dataset<Row> predictions = model.transform(featuresOut);
 
 // Evaluate clustering by computing Silhouette score
         ClusteringEvaluator evaluator = new ClusteringEvaluator();
