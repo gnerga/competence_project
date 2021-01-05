@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `phone_number` varchar(12) DEFAULT NULL,
   `profile` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
