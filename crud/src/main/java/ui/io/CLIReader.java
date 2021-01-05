@@ -1,4 +1,4 @@
-package ui;
+package ui.io;
 
 import java.util.Scanner;
 import java.util.function.Function;
@@ -49,7 +49,7 @@ public class CLIReader {
         }
     }
 
-    public String readString(){
+    public String readString() {
         return readLine();
     }
 

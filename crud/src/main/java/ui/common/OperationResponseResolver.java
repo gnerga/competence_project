@@ -1,4 +1,4 @@
-package ui;
+package ui.common;
 
 import java.util.Objects;
 import java.util.stream.Collectors;

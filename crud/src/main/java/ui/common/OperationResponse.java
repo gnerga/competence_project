@@ -1,4 +1,4 @@
-package ui;
+package ui.common;
 
 public class OperationResponse {
     final OperationStatus status;

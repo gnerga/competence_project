@@ -5,9 +5,9 @@ import db.DbConnectionFactory;
 import db.QueryExecutor;
 import db.ResultSetTransformer;
 import model.User;
-import ui.CLIReader;
 import ui.CommandLineInterface;
-import ui.OperationResponseResolver;
+import ui.common.OperationResponseResolver;
+import ui.io.CLIReader;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

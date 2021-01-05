@@ -3,7 +3,7 @@ package ui.users;
 import db.QueryExecutor;
 import db.ResultSetTransformer;
 import model.User;
-import ui.OperationResponse;
+import ui.common.OperationResponse;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public class UsersService {
     private final QueryExecutor executor;
+
     public UsersService() {
         this.executor = new QueryExecutor();
     }

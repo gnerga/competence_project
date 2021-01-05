@@ -1,4 +1,4 @@
-package ui.users;
+package ui.hotspots;
 
 import ui.common.CrudOperation;
 import ui.common.OperationResponse;
@@ -7,31 +7,27 @@ import ui.io.CLIReader;
 
 import static ui.common.CrudOperation.*;
 
-
-public class UsersController implements Runnable {
+public class HotSpotsController implements Runnable {
     private final OperationResponseResolver responseResolver;
     private final CLIReader cliReader;
-    private final UsersService usersService;
 
-    public UsersController(OperationResponseResolver responseResolver, CLIReader cliReader, UsersService usersService) {
-        this.responseResolver = responseResolver;
+    public HotSpotsController(OperationResponseResolver responseResolver, CLIReader cliReader) {
         this.cliReader = cliReader;
-        this.usersService = usersService;
+        this.responseResolver = responseResolver;
     }
 
     @Override
     public void run() {
-        System.out.println("siema");
-        CrudOperation crudOperation = selectOperation();
-        handleOperation(crudOperation);
+        CrudOperation userOption = selectOperation();
+        handleOperation(userOption);
     }
 
-    private void handleOperation(CrudOperation usersOperation) {
-        if (usersOperation == CrudOperation.BACK) {
+    private void handleOperation(CrudOperation crudOperation) {
+        if (crudOperation == BACK) {
             return;
         }
 
-        responseResolver.resolve(execute(usersOperation));
+        responseResolver.resolve(execute(crudOperation));
     }
 
     private OperationResponse execute(CrudOperation operation) {
@@ -49,20 +45,29 @@ public class UsersController implements Runnable {
         throw new IllegalArgumentException("Unsupported operation type: " + operation.name());
     }
 
-
     private OperationResponse create() {
-        print("Phone number:");
-        String phoneNumber = cliReader.readString();
-        print("Profile");
-        String profile = cliReader.readString();
+        print("");
+        print("Creating hotspot:");
 
-        return usersService.create(phoneNumber, profile);
+        print("Enter hotspot name: ");
+
+
+        print("Enter hotspot description: ");
+        String description = cliReader.readString();
+
+        print("Enter hotspot longitude in format XXX.XX, e.g. 124.74, -4.01: ");
+
+
+        print("Enter hotspot latitude in format XXX.XX, e.g. 124.74, -4.01: ");
+
+
+        print("Select hotspot type: ");
+
+        return null;
     }
 
     private OperationResponse read() {
-        print("User id: ");
-        int id = cliReader.readInt("That's not an integer :/");
-        return usersService.read(id);
+        return null;
     }
 
     private OperationResponse update() {
@@ -74,10 +79,10 @@ public class UsersController implements Runnable {
     }
 
     private CrudOperation selectOperation() {
-        print("1. Create user");
-        print("2. Read user");
-        print("3. Update user");
-        print("4. Delete user");
+        print("1. Create hotspot");
+        print("2. Read hotspot");
+        print("3. Update hotspot");
+        print("4. Delete hotspot");
         print("");
         print("0. Back");
 
