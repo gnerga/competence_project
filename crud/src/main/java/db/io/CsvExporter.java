@@ -5,30 +5,24 @@ import db.QueryExecutor;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class CsvExporter implements FileExporter {
-    private QueryExecutor executor;
 
     public CsvExporter() {
-        this.executor = new QueryExecutor();
+
     }
 
-    public void exportTableToCsv(String filePath, String table) {
+    public void exportTableToCsv(String filePath, List<String[]> rows) {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filePath));
 
-            String loadQuery = "SELECT * FROM `" + table + "`";
-
-            ResultSet resultSet = executor.getResultSet(loadQuery);
-            writer.writeAll(resultSet, true);
-
+            writer.writeAll(rows, false);
             writer.close();
-            resultSet.close();
-        } catch (IOException | SQLException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+
 }

@@ -87,15 +87,4 @@ public class QueryExecutor {
             throw new RuntimeException("Could not execute query: " + query);
         }
     }
-
-    public ResultSet getResultSet(String query) {
-        try (Statement statement = DbConnectionFactory.getInstance().createStatement()){
-            statement.execute(query);
-            return statement.getResultSet();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        throw new RuntimeException("Could not execute query: " + query);
-    }
 }
