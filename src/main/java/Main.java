@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Necessary to work on windows
-        System.setProperty("hadoop.home.dir", "C:\\hadoop");
+//        System.setProperty("hadoop.home.dir", "C:\\hadoop");
         // Disable logging
         Logger.getLogger("org").setLevel(Level.OFF);
         Logger.getLogger("akka").setLevel(Level.OFF);

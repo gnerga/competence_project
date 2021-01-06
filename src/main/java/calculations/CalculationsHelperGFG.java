@@ -1,13 +1,17 @@
 package calculations;
 
+import javax.print.attribute.standard.PresentationDirection;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class CalculationsHelperGFG {
     // str[i..j] are distinct, otherwise returns false
-    public static Boolean areDistinct(List<String> str,
-                                      int i, int j) {
+    Set<String> points;
+
+    public  Boolean areDistinct(List<String> str,
+                                      int i, int j, int max) {
 
         // Note : Default values in visited are false
         // boolean[] visited = new boolean[26];
@@ -19,12 +23,15 @@ public class CalculationsHelperGFG {
 
             visited.add(str.get(k));
         }
+        if ((j - i + 1) >= max) {
+            points = visited;
+        }
         return true;
     }
 
     // Returns length of the longest substring
     // with all distinct characters.
-    public static int longestUniqueSubsttr(List<String> str) {
+    public  String longestUniqueSubsttr(List<String> str) {
         int n = str.size();
 
         // Result
@@ -32,9 +39,13 @@ public class CalculationsHelperGFG {
 
         for (int i = 0; i < n; i++)
             for (int j = i; j < n; j++)
-                if (areDistinct(str, i, j))
+                if (areDistinct(str, i, j, res))
                     res = Math.max(res, j - i + 1);
 
-        return res;
+                StringBuilder stringBuilder = new StringBuilder();
+        for (String point : points) {
+            stringBuilder.append(point).append("---");
+        }
+        return stringBuilder.toString();
     }
 }

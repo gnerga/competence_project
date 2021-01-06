@@ -76,7 +76,8 @@ public class Calculations {
             for (Long key : keys) {
                 visitedPoints.add(test.get(key));
             }
-            int i = CalculationsHelperGFG.longestUniqueSubsttr(visitedPoints);
+            CalculationsHelperGFG calculationsHelperGFG = new CalculationsHelperGFG();
+            String i = calculationsHelperGFG.longestUniqueSubsttr(visitedPoints);
             return e._1 + "  " + i;
         });
 
