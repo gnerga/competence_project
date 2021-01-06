@@ -45,7 +45,7 @@ public class QueryExecutor {
 
     private ResultSet insert(Statement statement, String insertQuery) throws SQLException {
         statement.executeUpdate(insertQuery, Statement.RETURN_GENERATED_KEYS);
-        return statement.getResultSet();
+        return statement.getGeneratedKeys();
     }
 
     public void execute(String query) {
