@@ -18,8 +18,7 @@ public class FakeUsersService {
         }
 
         String usersValues = users.stream().map(this::toSqlValues).collect(Collectors.joining(", "));
-        String query = "INSERT INTO fake_users (id, phone_number, profile) VALUES "
-                + usersValues;
+        String query = "INSERT INTO fake_users (id, phone_number, profile) VALUES " + usersValues;
 
         executor.insert(query);
     }

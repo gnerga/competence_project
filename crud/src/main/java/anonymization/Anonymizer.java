@@ -41,8 +41,8 @@ public class Anonymizer {
         List<User> fakeUsers = getFakeUsers();
 
         List<User> nonAnonymousUsers = getNonAnonymousUsers(users, fakeUsers);
-        List<FakeUser> anonymousUsers = nonAnonymousUsers.stream().map(this::anonymize).collect(Collectors.toList());
-        fakeUsersService.create(anonymousUsers);
+        List<FakeUser> anonymizedUsers = nonAnonymousUsers.stream().map(this::anonymize).collect(Collectors.toList());
+        fakeUsersService.create(anonymizedUsers);
     }
 
     private FakeUser anonymize(User user) {
