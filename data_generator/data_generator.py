@@ -43,10 +43,10 @@ def main():
     parser.add_argument('-su', "--setuserpath", dest='setuserpath', help="Set path to users file")
     parser.add_argument('-sh', "--sethotpath", dest='sethotpath', help="Set path to hotspot file")
     parser.add_argument('-st', "--settracepath", dest='settracepath', help="Set trace to hotspot file")
-
     parser.add_argument("-u", "--users", dest='users', help="Number of users to generate", type=int)
     parser.add_argument("-hs", "--hotspots",  help="Generate hotspots", action='store_true', default=False)
     parser.add_argument("-l", "--load",  help="Load users and hotspots from file", action='store_true', default=False)
+    parser.add_argument("-e", "--execute",  help="Execute trace generator", action='store_true', default=False)
 
     args = parser.parse_args()
 
@@ -88,19 +88,20 @@ def main():
         hotspots = hotspot_generator.return_list_of_hot_spots(hotspots_filename)
         print("Done")
 
-    if hotspots and users:
-        logs = log_generator.generate_log_files(number_of_user, hotspots, start_date, end_date)
+    if args.execute:
+        if hotspots and users:
+            logs = log_generator.generate_log_files(number_of_user, hotspots, start_date, end_date)
 
-        traces_to_csv(logs, filename=traces_filename + ".csv",
-                      headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
+            traces_to_csv(logs, filename=traces_filename + ".csv",
+                          headers=["UserId", "PoisName", "EnterTime", "ExitTime"])
 
-        for log in logs:
-            log.count_duration()
+            for log in logs:
+                log.count_duration()
 
-        traces_to_csv(logs, filename=traces_filename+"_duration.csv",
-                      headers=["UserId", "PoisName", "EnterTime", "ExitTime", "Duration"], duration=True)
-    else:
-        print("There is no hotspots or user data ...")
+            traces_to_csv(logs, filename=traces_filename+"_duration.csv",
+                          headers=["UserId", "PoisName", "EnterTime", "ExitTime", "Duration"], duration=True)
+        else:
+            print("There is no hotspots or user data ...")
 
 
 if __name__ == '__main__':
