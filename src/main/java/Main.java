@@ -1,26 +1,18 @@
 // Ref: https://github.com/databricks/learning-spark/blob/master/mini-complete-example/src/main/java/com/oreilly/learningsparkexamples/mini/java/WordCount.java
 // Edited by: Anas Katib
 // Last updated: Aug. 23, 2017
-import clustering.FrequentUsers;
+import clustering.AverageLengthOfStayClustering;
+import clustering.Clustering;
+import clustering.FrequencyClustering;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
 
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
-import scala.Tuple2;
-
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFunction;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Iterator;
 
 
 public class Main {
@@ -30,7 +22,7 @@ public class Main {
         Logger.getLogger("org").setLevel(Level.OFF);
         Logger.getLogger("akka").setLevel(Level.OFF);
 
-        SparkConf sparkConf = new SparkConf().setAppName("Hello Spark - WordCount").setMaster("local[*]");
+        SparkConf sparkConf = new SparkConf().setAppName("Competence Project 2021").setMaster("local[*]");
 
         SparkSession spark = SparkSession
                 .builder()
@@ -45,7 +37,35 @@ public class Main {
                     return pt8H30M.getSeconds();
                 }, DataTypes.LongType );
 
-        FrequentUsers frequentUsers= new FrequentUsers(spark);
+        Clustering frequentUsers= getFrequencyClustering(spark);
         frequentUsers.displayResult();
+
+        Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
+        averageLengthOfStayClustering.displayResult();
     }
+
+    private static Clustering getAverageLengthOfStayClustering(SparkSession spark){
+        final String groupByColumn = "PoisName";
+        final String featureColumn = "Avg stay in seconds";
+        final String directoryNameToSave = "averageLengthOfStayClustering";
+        final boolean saveModel = true;
+        final int numberOfCentroids = 3;
+        final String inputFileName = "log_150_duration.csv";
+        final String description = "Clustering points of interest by average length of stay";
+        return new AverageLengthOfStayClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
+    }
+
+    private static Clustering getFrequencyClustering(SparkSession spark){
+        final String groupByColumn = "PoisName";
+        final String featureColumn = "Quantity";
+        final String directoryNameToSave = "frequencyUsersClustering";
+        final boolean saveModel = true;
+        final int numberOfCentroids = 3;
+        final String inputFileName = "log_150_duration.csv";
+        final String description = "Clustering points of interest by user frequency";
+    return new FrequencyClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
 }
+}
+
+
+
