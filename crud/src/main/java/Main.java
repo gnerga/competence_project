@@ -20,7 +20,7 @@ public class Main {
         Anonymizer anonymizer = new Anonymizer(new FakeUsersService());
         anonymizer.initializeLookupTable(getFakePhoneNumbersFilePath(loader));
 
-        CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader());
+        CommandLineInterface cli = new CommandLineInterface(new OperationResponseResolver(), new CLIReader(), loader);
         CompletableFuture.runAsync(cli).join();
 
         anonymizer.anonymize();

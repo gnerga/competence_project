@@ -9,11 +9,13 @@ import java.io.IOException;
 
 public class TracesController implements Runnable {
     private final OperationResponseResolver responseResolver;
+    private final TracesGenerationConfiguration configuration;
     private final CLIReader cliReader;
 
-    public TracesController(CLIReader cliReader, OperationResponseResolver responseResolver) {
+    public TracesController(CLIReader cliReader, OperationResponseResolver responseResolver, TracesGenerationConfiguration configuration) {
         this.cliReader = cliReader;
         this.responseResolver = responseResolver;
+        this.configuration = configuration;
     }
 
     @Override
