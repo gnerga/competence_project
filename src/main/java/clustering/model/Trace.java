@@ -1,10 +1,7 @@
-package clustering;
+package clustering.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.net.ntp.TimeStamp;
-
-import java.sql.Time;
 
 @Getter
 @Setter

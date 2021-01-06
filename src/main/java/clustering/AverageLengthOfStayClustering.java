@@ -7,8 +7,8 @@ import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.StructType;
 
-public class AverageLengthOfStayClustering extends Clustering{
-    final String inputFileName;
+public class AverageLengthOfStayClustering extends Clustering {
+    private final String inputFileName;
 
     public AverageLengthOfStayClustering(String groupByColumn, String featureColumn, String directoryNameToSave, boolean saveModel, int numberOfCentroids, String inputFileName, String description, SparkSession spark) {
         super(groupByColumn, featureColumn, directoryNameToSave, saveModel, numberOfCentroids, description, spark);
@@ -18,11 +18,11 @@ public class AverageLengthOfStayClustering extends Clustering{
     protected Dataset<Row> prepareData() {
         // load csv file
         StructType schema = new StructType()
-                .add("UserId","int")
-                .add("PoisName","string")
-                .add("EnterTime","timestamp")
-                .add("ExitTime","timestamp")
-                .add("Duration","string");
+                .add("UserId", "int")
+                .add("PoisName", "string")
+                .add("EnterTime", "timestamp")
+                .add("ExitTime", "timestamp")
+                .add("Duration", "string");
 
         Dataset<Row> dataset = spark.read().format("csv")
                 .option("sep", ",")
@@ -32,10 +32,10 @@ public class AverageLengthOfStayClustering extends Clustering{
         Dataset<Row> rowDataset1 = dataset.withColumn("duration_in_second", functions.callUDF("sampleUDFLambda", dataset.col("Duration")));
 
         //groupBy
-        Dataset<Row> nazwa = rowDataset1.groupBy(groupByColumn).avg("duration_in_second");
+        Dataset<Row> name = rowDataset1.groupBy(groupByColumn).avg("duration_in_second");
 
         //count quantity of elements in groups
-        Dataset<Row> rowDataset = nazwa.toDF(groupByColumn, featureColumn);
+        Dataset<Row> rowDataset = name.toDF(groupByColumn, featureColumn);
 
         //convert data to vector (required by spark ml)
         VectorAssembler assembler = new VectorAssembler()

@@ -1,18 +1,16 @@
 // Ref: https://github.com/databricks/learning-spark/blob/master/mini-complete-example/src/main/java/com/oreilly/learningsparkexamples/mini/java/WordCount.java
 // Edited by: Anas Katib
 // Last updated: Aug. 23, 2017
+
+import calculations.Calculations;
 import clustering.AverageLengthOfStayClustering;
 import clustering.Clustering;
 import clustering.FrequencyClustering;
-import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
-
+import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
-
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
-import part2.LongestRoute;
-import part2.StayAtPoint;
 
 import java.time.Duration;
 
@@ -20,6 +18,8 @@ import java.time.Duration;
 public class Main {
 
     public static void main(String[] args) {
+        // Necessary to work on windows
+        System.setProperty("hadoop.home.dir", "C:\\hadoop");
         // Disable logging
         Logger.getLogger("org").setLevel(Level.OFF);
         Logger.getLogger("akka").setLevel(Level.OFF);
@@ -34,25 +34,27 @@ public class Main {
 
         spark.sqlContext()
                 .udf()
-                .register( "sampleUDFLambda", ( String s1 ) -> {
+                .register("sampleUDFLambda", (String s1) -> {
                     Duration pt8H30M = Duration.parse(s1);
                     return pt8H30M.getSeconds();
-                }, DataTypes.LongType );
+                }, DataTypes.LongType);
 
+        // PART I POINT 4
+        Calculations.countStayAtPoisForUsers(spark);
 
-        LongestRoute.countRoute(spark);
+        // PART I POINT 5
+        Calculations.countLongestRoute(spark);
 
-        StayAtPoint.countStayAtPoint(spark);
-
-        Clustering frequentUsers= getFrequencyClustering(spark);
+        // PART II POINT 1
+        Clustering frequentUsers = getFrequencyClustering(spark);
         frequentUsers.displayResult();
 
-        Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
+        Clustering averageLengthOfStayClustering = getAverageLengthOfStayClustering(spark);
         averageLengthOfStayClustering.displayResult();
 
     }
 
-    private static Clustering getAverageLengthOfStayClustering(SparkSession spark){
+    private static Clustering getAverageLengthOfStayClustering(SparkSession spark) {
         final String groupByColumn = "PoisName";
         final String featureColumn = "Avg stay in seconds";
         final String directoryNameToSave = "averageLengthOfStayClustering";
@@ -60,10 +62,10 @@ public class Main {
         final int numberOfCentroids = 3;
         final String inputFileName = "log_15000_duration.csv";
         final String description = "Clustering points of interest by average length of stay";
-        return new AverageLengthOfStayClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
+        return new AverageLengthOfStayClustering(groupByColumn, featureColumn, directoryNameToSave, saveModel, numberOfCentroids, inputFileName, description, spark);
     }
 
-    private static Clustering getFrequencyClustering(SparkSession spark){
+    private static Clustering getFrequencyClustering(SparkSession spark) {
         final String groupByColumn = "PoisName";
         final String featureColumn = "Quantity";
         final String directoryNameToSave = "frequencyUsersClustering";
@@ -71,8 +73,8 @@ public class Main {
         final int numberOfCentroids = 3;
         final String inputFileName = "log_15000_duration.csv";
         final String description = "Clustering points of interest by user frequency";
-    return new FrequencyClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
-}
+        return new FrequencyClustering(groupByColumn, featureColumn, directoryNameToSave, saveModel, numberOfCentroids, inputFileName, description, spark);
+    }
 }
 
 

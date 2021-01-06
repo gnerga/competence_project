@@ -1,8 +1,8 @@
-package clustering;
+package clustering.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.net.ntp.TimeStamp;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -10,19 +10,17 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class A implements Serializable {
+@NoArgsConstructor
+public class PoiDto implements Serializable {
     private String poisName;
     private Long enterTime;
     private Map<Long, String> test = new HashMap<>();
 
-    public void addTime(A a){
-        test.put(a.getEnterTime(),a.getPoisName());
+    public void addTime(PoiDto a) {
+        test.put(a.getEnterTime(), a.getPoisName());
     }
 
-    public A() {
-    }
-
-    public A(String poisName, Long enterTime) {
+    public PoiDto(String poisName, Long enterTime) {
         this.poisName = poisName;
         this.enterTime = enterTime;
     }
@@ -30,7 +28,7 @@ public class A implements Serializable {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        test.forEach((k,v) -> stringBuilder.append(k.toString()).append("---").append(v));
+        test.forEach((k, v) -> stringBuilder.append(k.toString()).append("---").append(v));
         return stringBuilder.toString();
     }
 }
