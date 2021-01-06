@@ -25,8 +25,7 @@ class LookupTable {
     }
 
     int size() {
-        String query = "SELECT COUNT(*) FROM lookup_table";
-        return executor.get(query, (ResultSet rs) -> rs.getInt(1)).orElseThrow();
+        return getTable().size();
     }
 
     private Map<Integer, String> getTable() {
