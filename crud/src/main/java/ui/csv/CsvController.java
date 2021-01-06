@@ -1,13 +1,11 @@
 package ui.csv;
 
 import domain.csv.CsvService;
-import ui.common.CrudOperation;
+import domain.csv.Tables;
 import ui.common.OperationResponse;
 import ui.common.OperationResponseResolver;
 import ui.io.CLIReader;
 import ui.io.IntInRangeValidator;
-
-import static ui.common.CrudOperation.*;
 
 public class CsvController implements Runnable {
     private final CLIReader cliReader;
@@ -46,17 +44,16 @@ public class CsvController implements Runnable {
     }
 
     private OperationResponse exportCsv() {
-        String table = selectTable();
+        Tables table = selectTable();
         return csvService.exportCsv(table);
     }
 
     private OperationResponse importCsv() {
-        String table = selectTable();
-        String path = cliReader.readString();
-        return csvService.importCsv(path, table);
+        Tables table = selectTable();
+        return csvService.importCsv(table);
     }
 
-    private String selectTable() {
+    private Tables selectTable() {
         print("Select table:");
         print("1. users");
         print("2. hot_spots");
@@ -66,11 +63,11 @@ public class CsvController implements Runnable {
 
         switch (selectedTable) {
             case 1:
-                return "users";
+                return Tables.USERS;
             case 2:
-                return "hot_spots";
+                return Tables.HOT_SPOTS;
             case 3:
-                return "fake_users";
+                return Tables.FAKE_USERS;
         }
 
         throw new IllegalStateException("Table should've been selected already!");

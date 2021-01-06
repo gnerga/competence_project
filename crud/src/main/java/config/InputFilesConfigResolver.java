@@ -18,4 +18,9 @@ public class InputFilesConfigResolver {
         String path = properties.getProperty("input.fakePhoneNumbers.path");
         return Paths.get(path);
     }
+
+    public String getImportPath(){
+        Properties properties = loader.load(SRC_MAIN_RESOURCES_DB_PROPERTIES);
+        return properties.getProperty("input.import.path");
+    }
 }
