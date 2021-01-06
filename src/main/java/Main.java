@@ -50,7 +50,7 @@ public class Main {
         final String directoryNameToSave = "averageLengthOfStayClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_150_duration.csv";
+        final String inputFileName = "log_15000_duration.csv";
         final String description = "Clustering points of interest by average length of stay";
         return new AverageLengthOfStayClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
     }
@@ -61,7 +61,7 @@ public class Main {
         final String directoryNameToSave = "frequencyUsersClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_150_duration.csv";
+        final String inputFileName = "log_15000_duration.csv";
         final String description = "Clustering points of interest by user frequency";
     return new FrequencyClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
 }
