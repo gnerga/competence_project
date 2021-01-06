@@ -20,8 +20,13 @@ public class UsersService {
         String query = "INSERT INTO `users`(`phone_number`, `profile`) " +
                 "VALUES (\"" + dto.phoneNumber + "\",\"" + dto.profile.getValue() + "\")";
 
-        executor.insert(query);
-        return OperationResponse.success();
+        try {
+            executor.insert(query);
+            return OperationResponse.success("User created!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return OperationResponse.failure("Could not create this user!");
+        }
     }
 
     public OperationResponse read(int id) {
@@ -36,14 +41,24 @@ public class UsersService {
     public OperationResponse update(UserUpdateDto dto) {
         String query = "UPDATE `users` SET `phone_number`=\"" + dto.phoneNumber + "\",`profile`=\"" + dto.profile.getValue() + "\" WHERE id="+dto.id;
 
-        executor.execute(query);
-        return OperationResponse.success();
+        try {
+            executor.execute(query);
+            return OperationResponse.success("User updated!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return OperationResponse.failure("Could not update this user!");
+        }
     }
 
     public OperationResponse delete(int id) {
         String query = "DELETE FROM `users` WHERE id="+id;
 
-        executor.execute(query);
-        return OperationResponse.success();
+        try {
+            executor.execute(query);
+            return OperationResponse.success("User deleted!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return OperationResponse.failure("Could not delete this user!");
+        }
     }
 }

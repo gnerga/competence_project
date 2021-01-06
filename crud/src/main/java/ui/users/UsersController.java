@@ -73,6 +73,11 @@ public class UsersController implements Runnable {
     private OperationResponse update() {
         print("User id: ");
         int id = cliReader.readInt("That's not an integer :/");
+
+        OperationResponse readUser = usersService.read(id);
+        if (readUser.getStatus() == OperationResponse.OperationStatus.FAILURE)
+            return readUser;
+
         print(responseResolver.resolve(usersService.read(id)));
 
         print("Phone number:");
@@ -92,7 +97,7 @@ public class UsersController implements Runnable {
     }
 
     private User.Profile selectProfile() {
-        print("Select hotspot type:");
+        print("Select user type:");
         print("1. Student");
         print("2. Teacher");
         print("3. Service staff");

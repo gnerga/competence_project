@@ -9,6 +9,10 @@ public class OperationResponse {
         this.message = message;
     }
 
+    public OperationStatus getStatus() {
+        return status;
+    }
+
     public static OperationResponse success() {
         return new OperationResponse(OperationStatus.SUCCESS, null);
     }
