@@ -57,7 +57,7 @@ public class TracesController implements Runnable {
         print("Generating traces...");
 
         try {
-            Runtime.getRuntime().exec(new String[]{"python3", "test.py"});
+            Runtime.getRuntime().exec(new String[]{"python3", configuration.pythonScriptPath.toString()});
             return OperationResponse.success("Traces generated!");
         } catch (IOException e) {
             e.printStackTrace();
