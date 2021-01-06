@@ -34,28 +34,9 @@ def traces_to_csv(logs, filename, headers, duration=False):
 
 def main():
 
-    user_file_location_path = None
-    hotspot_file_location_path = None
-    trace_file_location_path = None
-
     start_date = datetime.datetime(year=2020, month=10, day=1, hour=7, minute=0, second=0)
     end_date = datetime.datetime(year=2020, month=12, day=1, hour=22, minute=0, second=0)
     number_of_user = 150
-
-    if hotspot_file_location_path:
-        hotspots_filename = hotspot_file_location_path
-    else:
-        hotspots_filename = "hotspot" + ".csv"
-
-    if trace_file_location_path:
-        traces_filename = trace_file_location_path
-    else:
-        traces_filename = "log_" + str(number_of_user)
-
-    if user_file_location_path:
-        users_filename = user_file_location_path
-    else:
-        users_filename = "user_"+ ".csv"
 
     parser = argparse.ArgumentParser()
 
@@ -74,15 +55,21 @@ def main():
 
     if args.setuserpath is not None:
         print("Path user set !")
-        user_file_location_path = str(args.setuserpath)
+        users_filename = str(args.setuserpath)
+    else:
+        users_filename = "user_" + ".csv"
 
     if args.sethotpath is not None:
         print("Path hotspot set !")
-        hotspot_file_location_path = str(args.sethotpath)
+        hotspots_filename = str(args.sethotpath)
+    else:
+        hotspots_filename = "hotspot" + ".csv"
 
     if args.settracepath is not None:
         print("Path trace set !")
-        trace_file_location_path = str(args.settracepath)
+        traces_filename = str(args.settracepath)
+    else:
+        traces_filename = "log_" + str(number_of_user)
 
     if args.hotspots:
         print("Hotspots generating...")
