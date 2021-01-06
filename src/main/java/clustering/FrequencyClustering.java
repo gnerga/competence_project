@@ -6,14 +6,10 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class FrequencyClustering extends Clustering{
-    final String groupByColumn;
-    final  String featureColumn;
     final String inputFileName;
 
     public FrequencyClustering(String groupByColumn, String featureColumn, String directoryNameToSave, boolean saveModel, int numberOfCentroids, String inputFileName, String description, SparkSession spark) {
         super(groupByColumn, featureColumn, directoryNameToSave, saveModel, numberOfCentroids, description, spark);
-        this.groupByColumn = groupByColumn;
-        this.featureColumn = featureColumn;
         this.inputFileName = inputFileName;
     }
 

@@ -14,7 +14,7 @@ public abstract class Clustering {
     final  String featureColumn;
     final  String directoryNameToSave;
     final  boolean saveModel;
-    final SparkSession spark;
+    public final SparkSession spark;
     final int numberOfCentroids;
     final String description;
 

@@ -8,14 +8,10 @@ import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.StructType;
 
 public class AverageLengthOfStayClustering extends Clustering{
-    final String groupByColumn;
-    final  String featureColumn;
     final String inputFileName;
 
     public AverageLengthOfStayClustering(String groupByColumn, String featureColumn, String directoryNameToSave, boolean saveModel, int numberOfCentroids, String inputFileName, String description, SparkSession spark) {
         super(groupByColumn, featureColumn, directoryNameToSave, saveModel, numberOfCentroids, description, spark);
-        this.groupByColumn = groupByColumn;
-        this.featureColumn = featureColumn;
         this.inputFileName = inputFileName;
     }
 
