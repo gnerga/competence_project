@@ -9,14 +9,14 @@ import ui.hotspots.HotSpotsController;
 import ui.io.CLIReader;
 import ui.io.IntInRangeValidator;
 import ui.traces.TracesController;
-import ui.traces.TracesGenerationConfiguration;
+import ui.traces.TracesGenerationConfigurationResolver;
 import ui.users.UsersController;
 
 public class CommandLineInterface implements Runnable {
     private final OperationResponseResolver responseResolver;
     private final CLIReader cliReader;
-    private PropertiesLoader propertiesLoader;
     private final QueryExecutor queryExecutor;
+    private final PropertiesLoader propertiesLoader;
 
     public CommandLineInterface(OperationResponseResolver responseResolver, CLIReader cliReader, PropertiesLoader loader) {
         this.responseResolver = responseResolver;
@@ -40,7 +40,7 @@ public class CommandLineInterface implements Runnable {
                     new CsvController(cliReader, responseResolver).run();
                     break;
                 case GENERATE_TRACES:
-                    new TracesController(cliReader, responseResolver, new TracesGenerationConfiguration(propertiesLoader)).run();
+                    new TracesController(cliReader, responseResolver, new TracesGenerationConfigurationResolver(propertiesLoader)).run();
                     break;
                 case EXIT:
                     return;
