@@ -1,4 +1,4 @@
-// Ref: https://github.com/databricks/learning-spark/blob/master/mini-complete-example/src/main/java/com/oreilly/learningsparkexamples/mini/java/WordCount.java
+package part2;// Ref: https://github.com/databricks/learning-spark/blob/master/mini-complete-example/src/main/java/com/oreilly/learningsparkexamples/mini/java/WordCount.java
 // Edited by: Anas Katib
 // Last updated: Aug. 23, 2017
 
@@ -23,28 +23,10 @@ import java.time.Duration;
 import java.util.*;
 
 
-public class Main2 {
+public class LongestRoute {
 
-    public static void main(String[] args) {
-        // Disable logging
-        Logger.getLogger("org").setLevel(Level.OFF);
-        Logger.getLogger("akka").setLevel(Level.OFF);
-
-        SparkConf sparkConf = new SparkConf().setAppName("Competence Project 2021").setMaster("local[*]");
-
-        SparkSession spark = SparkSession
-                .builder()
-                .appName("Java Spark SQL basic example")
-                .config(sparkConf)
-                .getOrCreate();
-
-        spark.sqlContext()
-                .udf()
-                .register( "sampleUDFLambda", ( String s1 ) -> {
-                    Duration pt8H30M = Duration.parse(s1);
-                    return pt8H30M.getSeconds();
-                }, DataTypes.LongType );
-
+    public static void countRoute(SparkSession spark) {
+        System.out.println("Count longest route ...");
         // load csv file
         StructType schema = new StructType()
                 .add("userId","int")
@@ -59,7 +41,6 @@ public class Main2 {
                 .option("header", "true").load("./inputfiles/log_15000_duration.csv");
 
         Dataset<Trace> as = dataset.as(Encoders.bean(Trace.class));
-        as.show();
 
         JavaRDD<Trace> traceJavaRDD = as.javaRDD();
 
@@ -84,19 +65,8 @@ public class Main2 {
             return e._1 + "  " + i;
         });
 
-        map1.saveAsTextFile("./test4");
-
-        JavaRDD<String> map = integerAJavaPairRDD.map(pair -> pair._1() + " " + pair._2().toString());
-//        String s = map.toString();
-//        System.out.println(s);
-        map.saveAsTextFile("./test3");
-
-
-//                reduceByKey(new Function2<A, A, String>(){
-//            @Override
-//            public String call(A a, A a2) throws Exception {
-//                return null;
-//            }
+        map1.saveAsTextFile("./part1_5");
+        System.out.println("Result of longest route is in directory: part1_5");
     }
 }
 

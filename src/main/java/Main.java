@@ -11,6 +11,8 @@ import org.apache.spark.SparkConf;
 
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
+import part2.LongestRoute;
+import part2.StayAtPoint;
 
 import java.time.Duration;
 
@@ -37,11 +39,17 @@ public class Main {
                     return pt8H30M.getSeconds();
                 }, DataTypes.LongType );
 
+
+        LongestRoute.countRoute(spark);
+
+        StayAtPoint.countStayAtPoint(spark);
+
         Clustering frequentUsers= getFrequencyClustering(spark);
         frequentUsers.displayResult();
 
         Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
         averageLengthOfStayClustering.displayResult();
+
     }
 
     private static Clustering getAverageLengthOfStayClustering(SparkSession spark){
