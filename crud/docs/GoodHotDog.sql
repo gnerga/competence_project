@@ -74,8 +74,9 @@ CREATE TABLE `fake_users` (
 
 DROP TABLE IF EXISTS `lookup_table`;
 CREATE TABLE `lookup_table` (
-  `phone_number` varchar(12) NOT NULL,
-  `fake_phone_number` varchar(64) NOT NULL
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fake_phone_number` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump completed on 2021-01-04 23:12:52

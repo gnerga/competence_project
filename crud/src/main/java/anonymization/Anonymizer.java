@@ -8,6 +8,7 @@ import domain.users.UserResultSetMapper;
 import model.User;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +20,20 @@ public class Anonymizer {
     private final QueryExecutor executor;
     private final LookupTable lookupTable;
     private final FakeUsersService fakeUsersService;
+    private final FakePhoneNumbersLoader fakePhoneNumbersLoader;
 
     public Anonymizer(FakeUsersService fakeUsersService) {
         this.fakeUsersService = fakeUsersService;
         this.executor = new QueryExecutor();
         this.lookupTable = new LookupTable(executor);
+        this.fakePhoneNumbersLoader = new FakePhoneNumbersLoader();
+    }
+
+    public void initializeLookupTable(Path fakePhoneNumbersPath) {
+        if (lookupTable.isEmpty()) {
+            List<CreateFakePhoneNumberDto> dtos = fakePhoneNumbersLoader.load(fakePhoneNumbersPath);
+            lookupTable.initialize(dtos);
+        }
     }
 
     public void anonymize() {
@@ -36,12 +46,13 @@ public class Anonymizer {
     }
 
     private FakeUser anonymize(User user) {
-        String newPhoneNumber = lookupTable.computeIfAbsent(user.getPhoneNumber(), this::anonymize);
-        return new FakeUser(user, newPhoneNumber);
+        int fakePhoneNumberId = getFakePhoneNumberId(user.phoneNumber);
+        String fakePhoneNumber = lookupTable.get(fakePhoneNumberId);
+        return new FakeUser(user, fakePhoneNumber);
     }
 
-    private String anonymize(String phoneNumber) {
-        return Hashing.sha256().hashString(phoneNumber, StandardCharsets.UTF_8).toString().substring(0,12);
+    private Integer getFakePhoneNumberId(String phoneNumber) {
+        return Hashing.sha256().hashString(phoneNumber, StandardCharsets.UTF_8).toString().chars().sum() % lookupTable.size();
     }
 
     private List<User> getNonAnonymousUsers(List<User> users, List<User> fakeUsers) {
