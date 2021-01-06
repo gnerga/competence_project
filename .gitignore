@@ -1,0 +1,9 @@
+.idea
+models/__pycache__/RandHour.cpython-38.pyc
+models/__pycache__/Log.cpython-38.pyc
+log_150.csv
+log_15000.csv
+log_150_duration.csv
+log_15000_duration.csv
+user_150.csv
+user_15000git .csv
