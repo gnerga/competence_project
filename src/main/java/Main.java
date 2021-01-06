@@ -11,6 +11,8 @@ import org.apache.spark.SparkConf;
 
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
+import patterns.Patterns;
+import ranking.Ranking;
 
 import java.time.Duration;
 
@@ -37,11 +39,24 @@ public class Main {
                     return pt8H30M.getSeconds();
                 }, DataTypes.LongType );
 
-        Clustering frequentUsers= getFrequencyClustering(spark);
-        frequentUsers.displayResult();
+        spark.sqlContext()
+                .udf()
+                .register( "normalize", ( Long x, Integer low, Integer high ) -> ((double) x - low) / (high - low),
+                        DataTypes.DoubleType );
 
-        Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
-        averageLengthOfStayClustering.displayResult();
+        spark.sqlContext()
+                .udf()
+                .register( "szafa", ( Double x, Double y) -> (0.6 * x) + (0.4 * y), DataTypes.DoubleType );
+
+//        Clustering frequentUsers= getFrequencyClustering(spark);
+//        frequentUsers.displayResult();
+//
+//        Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
+//        averageLengthOfStayClustering.displayResult();
+
+//        Ranking ranking = new Ranking(spark);
+
+        Patterns patterns = new Patterns(spark);
     }
 
     private static Clustering getAverageLengthOfStayClustering(SparkSession spark){
