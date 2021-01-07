@@ -61,18 +61,20 @@ public class TracesController implements Runnable {
         try {
             Process proc = Runtime.getRuntime().exec(getCommandWithParameters());
 
-            BufferedReader stdError = new BufferedReader(new
-                    InputStreamReader(proc.getErrorStream()));
-
-            String error = stdError.readLine();
-            if (error != null) {
-                StringBuilder errorBuilder = new StringBuilder("Error occurred during traces generation! Here are python script's logs:");
-                errorBuilder.append(error);
-                while (!(error = stdError.readLine()).isEmpty()) {
+            try (BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()))) {
+                String error = stdError.readLine();
+                if (error != null) {
+                    StringBuilder errorBuilder = new StringBuilder("Error occurred during traces generation! Here are python script's logs:\n");
                     errorBuilder.append(error);
-                }
+                    errorBuilder.append("\n");
+                    while ((error = stdError.readLine()) != null) {
+                        errorBuilder.append(error);
+                        errorBuilder.append("\n");
+                    }
 
-                return OperationResponse.failure(errorBuilder.toString());
+                    return OperationResponse.failure(errorBuilder.toString());
+                }
+            } catch (IOException ignored) {
             }
 
             return OperationResponse.success("Traces generated!");
