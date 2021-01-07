@@ -27,7 +27,7 @@ public class AverageLengthOfStayClustering extends Clustering{
         Dataset<Row> dataset = spark.read().format("csv")
                 .option("sep", ",")
                 .schema(schema)
-                .option("header", "true").load("./inputfiles/" + inputFileName);
+                .option("header", "true").load("./output/" + inputFileName);
 
         Dataset<Row> rowDataset1 = dataset.withColumn("duration_in_second", functions.callUDF("sampleUDFLambda", dataset.col("Duration")));
 
