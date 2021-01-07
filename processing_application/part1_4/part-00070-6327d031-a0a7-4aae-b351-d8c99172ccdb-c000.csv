@@ -1,0 +1,742 @@
+5242,Bridge,135158
+5242,Cafeteria,144751
+5242,Chinese Bar,95876
+5242,Dean's office,144138
+5242,Finestra Pub,80674
+5242,Information Technology Center,150603
+5242,Main Library,129293
+5242,Park,95329
+5242,Sports bay,141888
+5242,Statue before BAIS Faculty,101058
+5243,Bridge,90343
+5243,Cafeteria,124236
+5243,Chinese Bar,115291
+5243,Dean's office,105186
+5243,Finestra Pub,82670
+5243,Information Technology Center,101248
+5243,Main Library,162996
+5243,Park,87771
+5243,Sports bay,150241
+5243,Statue before BAIS Faculty,122469
+5244,Bridge,147744
+5244,Cafeteria,175487
+5244,Chinese Bar,99876
+5244,Dean's office,82071
+5244,Finestra Pub,140198
+5244,Information Technology Center,162022
+5244,Main Library,140686
+5244,Park,108993
+5244,Sports bay,116440
+5244,Statue before BAIS Faculty,166855
+5245,Bridge,117962
+5245,Cafeteria,123520
+5245,Chinese Bar,103561
+5245,Dean's office,122814
+5245,Finestra Pub,120029
+5245,Information Technology Center,89905
+5245,Main Library,72970
+5245,Park,103402
+5245,Sports bay,113181
+5245,Statue before BAIS Faculty,186395
+5246,Bridge,116281
+5246,Cafeteria,136993
+5246,Chinese Bar,116489
+5246,Dean's office,77561
+5246,Finestra Pub,153458
+5246,Information Technology Center,145372
+5246,Main Library,91390
+5246,Park,117884
+5246,Sports bay,152808
+5246,Statue before BAIS Faculty,79462
+5247,Bridge,152223
+5247,Cafeteria,93646
+5247,Chinese Bar,108756
+5247,Dean's office,76257
+5247,Finestra Pub,115012
+5247,Information Technology Center,98090
+5247,Main Library,97698
+5247,Park,112325
+5247,Sports bay,109786
+5247,Statue before BAIS Faculty,159501
+5248,Bridge,125719
+5248,Cafeteria,136963
+5248,Chinese Bar,113121
+5248,Dean's office,157049
+5248,Finestra Pub,94404
+5248,Information Technology Center,107191
+5248,Main Library,87758
+5248,Park,142056
+5248,Sports bay,59827
+5248,Statue before BAIS Faculty,173861
+5249,Bridge,128404
+5249,Cafeteria,131369
+5249,Chinese Bar,117967
+5249,Dean's office,137877
+5249,Finestra Pub,85124
+5249,Information Technology Center,135299
+5249,Main Library,77692
+5249,Park,99735
+5249,Sports bay,126000
+5249,Statue before BAIS Faculty,116785
+5250,Bridge,125159
+5250,Cafeteria,128760
+5250,Chinese Bar,130412
+5250,Dean's office,90690
+5250,Finestra Pub,128075
+5250,Information Technology Center,96317
+5250,Main Library,128729
+5250,Park,93263
+5250,Sports bay,106976
+5250,Statue before BAIS Faculty,111604
+5251,Bridge,96756
+5251,Cafeteria,126602
+5251,Chinese Bar,181394
+5251,Dean's office,106533
+5251,Finestra Pub,146812
+5251,Information Technology Center,119217
+5251,Main Library,98863
+5251,Park,163727
+5251,Sports bay,155659
+5251,Statue before BAIS Faculty,148983
+5252,Bridge,145542
+5252,Cafeteria,93715
+5252,Chinese Bar,96507
+5252,Dean's office,104879
+5252,Finestra Pub,137331
+5252,Information Technology Center,74073
+5252,Main Library,130293
+5252,Park,71850
+5252,Sports bay,127959
+5252,Statue before BAIS Faculty,89907
+5253,Bridge,69120
+5253,Cafeteria,163516
+5253,Chinese Bar,182507
+5253,Dean's office,117237
+5253,Finestra Pub,146942
+5253,Information Technology Center,128909
+5253,Main Library,103403
+5253,Park,75882
+5253,Sports bay,86890
+5253,Statue before BAIS Faculty,129239
+5254,Bridge,121512
+5254,Cafeteria,133794
+5254,Chinese Bar,102917
+5254,Dean's office,141524
+5254,Finestra Pub,113372
+5254,Information Technology Center,147200
+5254,Main Library,106800
+5254,Park,150881
+5254,Sports bay,82464
+5254,Statue before BAIS Faculty,100674
+5255,Bridge,110525
+5255,Cafeteria,70434
+5255,Chinese Bar,127145
+5255,Dean's office,112421
+5255,Finestra Pub,91973
+5255,Information Technology Center,105322
+5255,Main Library,105553
+5255,Park,143494
+5255,Sports bay,133254
+5255,Statue before BAIS Faculty,132315
+5256,Bridge,106727
+5256,Cafeteria,161071
+5256,Chinese Bar,145249
+5256,Dean's office,111638
+5256,Finestra Pub,90332
+5256,Information Technology Center,125827
+5256,Main Library,126314
+5256,Park,111377
+5256,Sports bay,177381
+5256,Statue before BAIS Faculty,89048
+5257,Bridge,106119
+5257,Cafeteria,103933
+5257,Chinese Bar,143136
+5257,Dean's office,137490
+5257,Finestra Pub,195257
+5257,Information Technology Center,138928
+5257,Main Library,99754
+5257,Park,159088
+5257,Sports bay,127948
+5257,Statue before BAIS Faculty,147496
+5258,Bridge,139830
+5258,Cafeteria,107177
+5258,Chinese Bar,153726
+5258,Dean's office,104069
+5258,Finestra Pub,121024
+5258,Information Technology Center,121509
+5258,Main Library,126124
+5258,Park,124494
+5258,Sports bay,91233
+5258,Statue before BAIS Faculty,74926
+5259,Bridge,148827
+5259,Cafeteria,156087
+5259,Chinese Bar,90717
+5259,Dean's office,184490
+5259,Finestra Pub,94996
+5259,Information Technology Center,139089
+5259,Main Library,129928
+5259,Park,121439
+5259,Sports bay,119181
+5259,Statue before BAIS Faculty,170623
+5260,Bridge,106161
+5260,Cafeteria,87232
+5260,Chinese Bar,100431
+5260,Dean's office,110330
+5260,Finestra Pub,156608
+5260,Information Technology Center,104816
+5260,Main Library,122409
+5260,Park,133843
+5260,Sports bay,158142
+5260,Statue before BAIS Faculty,147572
+5261,Bridge,115357
+5261,Cafeteria,110943
+5261,Chinese Bar,107019
+5261,Dean's office,134268
+5261,Finestra Pub,127399
+5261,Information Technology Center,133768
+5261,Main Library,127693
+5261,Park,126146
+5261,Sports bay,125523
+5261,Statue before BAIS Faculty,146118
+5262,Bridge,189142
+5262,Cafeteria,132475
+5262,Chinese Bar,44412
+5262,Dean's office,159151
+5262,Finestra Pub,148505
+5262,Information Technology Center,155328
+5262,Main Library,110112
+5262,Park,102576
+5262,Sports bay,134206
+5262,Statue before BAIS Faculty,146399
+5263,Bridge,150877
+5263,Cafeteria,141505
+5263,Chinese Bar,123009
+5263,Dean's office,150338
+5263,Finestra Pub,111340
+5263,Information Technology Center,143277
+5263,Main Library,106085
+5263,Park,148182
+5263,Sports bay,136072
+5263,Statue before BAIS Faculty,128075
+5264,Bridge,174717
+5264,Cafeteria,82510
+5264,Chinese Bar,155385
+5264,Dean's office,116120
+5264,Finestra Pub,89663
+5264,Information Technology Center,144752
+5264,Main Library,128668
+5264,Park,154805
+5264,Sports bay,132335
+5264,Statue before BAIS Faculty,147891
+5265,Bridge,166159
+5265,Cafeteria,109645
+5265,Chinese Bar,106073
+5265,Dean's office,80111
+5265,Finestra Pub,105112
+5265,Information Technology Center,127789
+5265,Main Library,173155
+5265,Park,77982
+5265,Sports bay,89451
+5265,Statue before BAIS Faculty,128771
+5266,Bridge,156504
+5266,Cafeteria,127248
+5266,Chinese Bar,177896
+5266,Dean's office,164269
+5266,Finestra Pub,143278
+5266,Information Technology Center,158977
+5266,Main Library,84632
+5266,Park,174398
+5266,Sports bay,166819
+5266,Statue before BAIS Faculty,138119
+5267,Bridge,107079
+5267,Cafeteria,121074
+5267,Chinese Bar,116682
+5267,Dean's office,107050
+5267,Finestra Pub,134346
+5267,Information Technology Center,123593
+5267,Main Library,79524
+5267,Park,114350
+5267,Sports bay,207270
+5267,Statue before BAIS Faculty,134370
+5268,Bridge,125250
+5268,Cafeteria,107343
+5268,Chinese Bar,153905
+5268,Dean's office,116649
+5268,Finestra Pub,116096
+5268,Information Technology Center,138677
+5268,Main Library,131254
+5268,Park,133179
+5268,Sports bay,159066
+5268,Statue before BAIS Faculty,209244
+5269,Bridge,75779
+5269,Cafeteria,152313
+5269,Chinese Bar,175603
+5269,Dean's office,94686
+5269,Finestra Pub,124149
+5269,Information Technology Center,90207
+5269,Main Library,92177
+5269,Park,118194
+5269,Sports bay,138811
+5269,Statue before BAIS Faculty,112471
+5270,Bridge,75695
+5270,Cafeteria,99629
+5270,Chinese Bar,117362
+5270,Dean's office,134147
+5270,Finestra Pub,166217
+5270,Information Technology Center,152584
+5270,Main Library,133655
+5270,Park,119396
+5270,Sports bay,128479
+5270,Statue before BAIS Faculty,126002
+5271,Bridge,103307
+5271,Cafeteria,147948
+5271,Chinese Bar,145329
+5271,Dean's office,101107
+5271,Finestra Pub,119570
+5271,Information Technology Center,141051
+5271,Main Library,133788
+5271,Park,149965
+5271,Sports bay,102486
+5271,Statue before BAIS Faculty,119182
+5272,Bridge,108016
+5272,Cafeteria,154789
+5272,Chinese Bar,81293
+5272,Dean's office,85802
+5272,Finestra Pub,115111
+5272,Information Technology Center,122874
+5272,Main Library,148400
+5272,Park,142802
+5272,Sports bay,135394
+5272,Statue before BAIS Faculty,111347
+5273,Bridge,101136
+5273,Cafeteria,153631
+5273,Chinese Bar,85686
+5273,Dean's office,65592
+5273,Finestra Pub,117779
+5273,Information Technology Center,92068
+5273,Main Library,161489
+5273,Park,163901
+5273,Sports bay,96622
+5273,Statue before BAIS Faculty,175184
+5274,Bridge,136423
+5274,Cafeteria,116229
+5274,Chinese Bar,66337
+5274,Dean's office,97169
+5274,Finestra Pub,149114
+5274,Information Technology Center,147404
+5274,Main Library,170808
+5274,Park,136020
+5274,Sports bay,119764
+5274,Statue before BAIS Faculty,161381
+5275,Bridge,118260
+5275,Cafeteria,131891
+5275,Chinese Bar,79280
+5275,Dean's office,129059
+5275,Finestra Pub,93818
+5275,Information Technology Center,71970
+5275,Main Library,124495
+5275,Park,64405
+5275,Sports bay,101602
+5275,Statue before BAIS Faculty,86987
+5276,Bridge,100667
+5276,Cafeteria,101635
+5276,Chinese Bar,130281
+5276,Dean's office,163581
+5276,Finestra Pub,149897
+5276,Information Technology Center,131449
+5276,Main Library,146756
+5276,Park,168621
+5276,Sports bay,107526
+5276,Statue before BAIS Faculty,114310
+5277,Bridge,134948
+5277,Cafeteria,123760
+5277,Chinese Bar,126450
+5277,Dean's office,126346
+5277,Finestra Pub,147720
+5277,Information Technology Center,148679
+5277,Main Library,123920
+5277,Park,151032
+5277,Sports bay,102380
+5277,Statue before BAIS Faculty,199622
+5278,Bridge,117430
+5278,Cafeteria,120967
+5278,Chinese Bar,132040
+5278,Dean's office,169383
+5278,Finestra Pub,149947
+5278,Information Technology Center,146659
+5278,Main Library,134916
+5278,Park,123955
+5278,Sports bay,90789
+5278,Statue before BAIS Faculty,115078
+5279,Bridge,141895
+5279,Cafeteria,114659
+5279,Chinese Bar,96675
+5279,Dean's office,120191
+5279,Finestra Pub,112154
+5279,Information Technology Center,114886
+5279,Main Library,120757
+5279,Park,117388
+5279,Sports bay,111574
+5279,Statue before BAIS Faculty,151738
+5280,Bridge,106338
+5280,Cafeteria,151857
+5280,Chinese Bar,111432
+5280,Dean's office,140124
+5280,Finestra Pub,122141
+5280,Information Technology Center,97455
+5280,Main Library,74744
+5280,Park,151716
+5280,Sports bay,142454
+5280,Statue before BAIS Faculty,104705
+5281,Bridge,123103
+5281,Cafeteria,102867
+5281,Chinese Bar,135667
+5281,Dean's office,88498
+5281,Finestra Pub,125454
+5281,Information Technology Center,120980
+5281,Main Library,126377
+5281,Park,130805
+5281,Sports bay,157626
+5281,Statue before BAIS Faculty,158139
+5282,Bridge,129920
+5282,Cafeteria,102639
+5282,Chinese Bar,139211
+5282,Dean's office,103308
+5282,Finestra Pub,91188
+5282,Information Technology Center,67598
+5282,Main Library,135507
+5282,Park,102276
+5282,Sports bay,94424
+5282,Statue before BAIS Faculty,89684
+5283,Bridge,95407
+5283,Cafeteria,115071
+5283,Chinese Bar,147310
+5283,Dean's office,107268
+5283,Finestra Pub,155938
+5283,Information Technology Center,137630
+5283,Main Library,86334
+5283,Park,99715
+5283,Sports bay,157138
+5283,Statue before BAIS Faculty,154720
+5284,Bridge,88604
+5284,Cafeteria,136372
+5284,Chinese Bar,150464
+5284,Dean's office,147086
+5284,Finestra Pub,131359
+5284,Information Technology Center,146118
+5284,Main Library,108845
+5284,Park,93265
+5284,Sports bay,118236
+5284,Statue before BAIS Faculty,117652
+5285,Bridge,116920
+5285,Cafeteria,80696
+5285,Chinese Bar,104160
+5285,Dean's office,122754
+5285,Finestra Pub,166486
+5285,Information Technology Center,142822
+5285,Main Library,126862
+5285,Park,97718
+5285,Sports bay,139463
+5285,Statue before BAIS Faculty,148298
+5286,Bridge,134002
+5286,Cafeteria,74890
+5286,Chinese Bar,162978
+5286,Dean's office,166508
+5286,Finestra Pub,100205
+5286,Information Technology Center,71176
+5286,Main Library,115974
+5286,Park,158269
+5286,Sports bay,110655
+5286,Statue before BAIS Faculty,94883
+5287,Bridge,157700
+5287,Cafeteria,134307
+5287,Chinese Bar,110425
+5287,Dean's office,134254
+5287,Finestra Pub,172217
+5287,Information Technology Center,115046
+5287,Main Library,94059
+5287,Park,140459
+5287,Sports bay,146810
+5287,Statue before BAIS Faculty,104007
+5288,Bridge,92204
+5288,Cafeteria,104956
+5288,Chinese Bar,134495
+5288,Dean's office,119475
+5288,Finestra Pub,126178
+5288,Information Technology Center,155901
+5288,Main Library,114489
+5288,Park,154082
+5288,Sports bay,120130
+5288,Statue before BAIS Faculty,124142
+5289,Bridge,123716
+5289,Cafeteria,106766
+5289,Chinese Bar,106981
+5289,Dean's office,85675
+5289,Finestra Pub,110559
+5289,Information Technology Center,131990
+5289,Main Library,123230
+5289,Park,102255
+5289,Sports bay,83740
+5289,Statue before BAIS Faculty,122176
+5290,Bridge,82624
+5290,Cafeteria,165397
+5290,Chinese Bar,148964
+5290,Dean's office,108628
+5290,Finestra Pub,171737
+5290,Information Technology Center,139541
+5290,Main Library,108595
+5290,Park,146163
+5290,Sports bay,119235
+5290,Statue before BAIS Faculty,90431
+5291,Bridge,133489
+5291,Cafeteria,118733
+5291,Chinese Bar,78372
+5291,Dean's office,126807
+5291,Finestra Pub,143664
+5291,Information Technology Center,102507
+5291,Main Library,178473
+5291,Park,79943
+5291,Sports bay,154847
+5291,Statue before BAIS Faculty,110310
+5292,Bridge,128914
+5292,Cafeteria,91911
+5292,Chinese Bar,74741
+5292,Dean's office,141793
+5292,Finestra Pub,117157
+5292,Information Technology Center,200233
+5292,Main Library,100362
+5292,Park,204803
+5292,Sports bay,109148
+5292,Statue before BAIS Faculty,86142
+5293,Bridge,119416
+5293,Cafeteria,133160
+5293,Chinese Bar,127587
+5293,Dean's office,138252
+5293,Finestra Pub,135658
+5293,Information Technology Center,127279
+5293,Main Library,170653
+5293,Park,101215
+5293,Sports bay,134103
+5293,Statue before BAIS Faculty,71875
+5294,Bridge,164824
+5294,Cafeteria,81755
+5294,Chinese Bar,104321
+5294,Dean's office,76056
+5294,Finestra Pub,112641
+5294,Information Technology Center,92082
+5294,Main Library,75558
+5294,Park,122240
+5294,Sports bay,141011
+5294,Statue before BAIS Faculty,112737
+5295,Bridge,125901
+5295,Cafeteria,139955
+5295,Chinese Bar,138489
+5295,Dean's office,112471
+5295,Finestra Pub,120602
+5295,Information Technology Center,108889
+5295,Main Library,101694
+5295,Park,103985
+5295,Sports bay,115944
+5295,Statue before BAIS Faculty,153649
+5296,Bridge,127075
+5296,Cafeteria,87456
+5296,Chinese Bar,170558
+5296,Dean's office,114651
+5296,Finestra Pub,118189
+5296,Information Technology Center,118055
+5296,Main Library,124398
+5296,Park,155746
+5296,Sports bay,141314
+5296,Statue before BAIS Faculty,92120
+5297,Bridge,85845
+5297,Cafeteria,131084
+5297,Chinese Bar,101782
+5297,Dean's office,148666
+5297,Finestra Pub,98474
+5297,Information Technology Center,110036
+5297,Main Library,145411
+5297,Park,135106
+5297,Sports bay,120071
+5297,Statue before BAIS Faculty,81028
+5298,Bridge,119115
+5298,Cafeteria,135392
+5298,Chinese Bar,162230
+5298,Dean's office,61352
+5298,Finestra Pub,155083
+5298,Information Technology Center,120473
+5298,Main Library,113171
+5298,Park,122756
+5298,Sports bay,95375
+5298,Statue before BAIS Faculty,143493
+5299,Bridge,86380
+5299,Cafeteria,182095
+5299,Chinese Bar,135629
+5299,Dean's office,144859
+5299,Finestra Pub,127301
+5299,Information Technology Center,143092
+5299,Main Library,136314
+5299,Park,125294
+5299,Sports bay,179825
+5299,Statue before BAIS Faculty,130621
+5300,Bridge,150508
+5300,Cafeteria,115598
+5300,Chinese Bar,142904
+5300,Dean's office,133445
+5300,Finestra Pub,134319
+5300,Information Technology Center,143830
+5300,Main Library,136700
+5300,Park,132289
+5300,Sports bay,152892
+5300,Statue before BAIS Faculty,186995
+5301,Bridge,125675
+5301,Cafeteria,84451
+5301,Chinese Bar,133497
+5301,Dean's office,128841
+5301,Finestra Pub,120891
+5301,Information Technology Center,85529
+5301,Main Library,178052
+5301,Park,116884
+5301,Sports bay,168669
+5301,Statue before BAIS Faculty,148017
+5302,Bridge,133520
+5302,Cafeteria,86513
+5302,Chinese Bar,79927
+5302,Dean's office,136313
+5302,Finestra Pub,133425
+5302,Information Technology Center,129709
+5302,Main Library,118848
+5302,Park,99462
+5302,Sports bay,117730
+5302,Statue before BAIS Faculty,82345
+5303,Bridge,103310
+5303,Cafeteria,103545
+5303,Chinese Bar,133933
+5303,Dean's office,179358
+5303,Finestra Pub,128184
+5303,Information Technology Center,122289
+5303,Main Library,114652
+5303,Park,141421
+5303,Sports bay,71679
+5303,Statue before BAIS Faculty,161339
+5304,Bridge,117524
+5304,Cafeteria,144061
+5304,Chinese Bar,93149
+5304,Dean's office,126942
+5304,Finestra Pub,125953
+5304,Information Technology Center,128598
+5304,Main Library,95357
+5304,Park,126477
+5304,Sports bay,128630
+5304,Statue before BAIS Faculty,147746
+5305,Bridge,143005
+5305,Cafeteria,116578
+5305,Chinese Bar,139947
+5305,Dean's office,117921
+5305,Finestra Pub,98162
+5305,Information Technology Center,107212
+5305,Main Library,105367
+5305,Park,108808
+5305,Sports bay,119776
+5305,Statue before BAIS Faculty,120373
+5306,Bridge,176224
+5306,Cafeteria,110786
+5306,Chinese Bar,153245
+5306,Dean's office,98597
+5306,Finestra Pub,127167
+5306,Information Technology Center,139105
+5306,Main Library,151585
+5306,Park,148187
+5306,Sports bay,90916
+5306,Statue before BAIS Faculty,173316
+5307,Bridge,176258
+5307,Cafeteria,186381
+5307,Chinese Bar,167752
+5307,Dean's office,147811
+5307,Finestra Pub,94154
+5307,Information Technology Center,120424
+5307,Main Library,143898
+5307,Park,118776
+5307,Sports bay,109797
+5307,Statue before BAIS Faculty,111754
+5308,Bridge,119465
+5308,Cafeteria,157403
+5308,Chinese Bar,124392
+5308,Dean's office,191568
+5308,Finestra Pub,84646
+5308,Information Technology Center,97135
+5308,Main Library,96241
+5308,Park,114011
+5308,Sports bay,136572
+5308,Statue before BAIS Faculty,139640
+5309,Bridge,93817
+5309,Cafeteria,134705
+5309,Chinese Bar,114983
+5309,Dean's office,113091
+5309,Finestra Pub,163105
+5309,Information Technology Center,137916
+5309,Main Library,146478
+5309,Park,143780
+5309,Sports bay,136119
+5309,Statue before BAIS Faculty,102969
+5310,Bridge,111840
+5310,Cafeteria,152011
+5310,Chinese Bar,121323
+5310,Dean's office,129141
+5310,Finestra Pub,132787
+5310,Information Technology Center,116791
+5310,Main Library,121054
+5310,Park,137798
+5310,Sports bay,104339
+5310,Statue before BAIS Faculty,165512
+5311,Bridge,169561
+5311,Cafeteria,98611
+5311,Chinese Bar,104910
+5311,Dean's office,84076
+5311,Finestra Pub,109415
+5311,Information Technology Center,154129
+5311,Main Library,139442
+5311,Park,161335
+5311,Sports bay,100222
+5311,Statue before BAIS Faculty,132685
+5312,Bridge,124301
+5312,Cafeteria,104230
+5312,Chinese Bar,139949
+5312,Dean's office,105281
+5312,Finestra Pub,90795
+5312,Information Technology Center,148205
+5312,Main Library,135523
+5312,Park,118097
+5312,Sports bay,156678
+5312,Statue before BAIS Faculty,144714
+5313,Bridge,113920
+5313,Cafeteria,119929
+5313,Chinese Bar,116716
+5313,Dean's office,78389
+5313,Finestra Pub,124735
+5313,Information Technology Center,96254
+5313,Main Library,169789
+5313,Park,95547
+5313,Sports bay,124393
+5313,Statue before BAIS Faculty,100850
+5314,Bridge,110952
+5314,Cafeteria,148251
+5314,Chinese Bar,122251
+5314,Dean's office,124682
+5314,Finestra Pub,158625
+5314,Information Technology Center,113741
+5314,Main Library,114924
+5314,Park,118951
+5314,Sports bay,143106
+5314,Statue before BAIS Faculty,101504
+5315,Bridge,118913
+5315,Cafeteria,141697
+5315,Chinese Bar,119433
+5315,Dean's office,111571
+5315,Finestra Pub,121180
+5315,Information Technology Center,128191
+5315,Main Library,169888
+5315,Park,139011
+5315,Sports bay,130328
+5315,Statue before BAIS Faculty,104119
+5316,Bridge,129299
+5316,Cafeteria,120242
