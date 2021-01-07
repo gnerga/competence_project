@@ -8,6 +8,7 @@ import db.io.CsvExporter;
 import db.io.CsvLoader;
 import ui.common.OperationResponse;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CsvService {
     }
 
     public OperationResponse exportCsv(Tables table) {
-        String path = "export/" + table.option + ".csv";
+        String path = "../output/" + table.option + ".csv";
 
         String loadQuery = "SELECT * FROM `" + table.option + "`";
 
@@ -43,8 +44,8 @@ public class CsvService {
     public OperationResponse importCsv(Tables table) {
         try {
             var inputResolver = new InputFilesConfigResolver(new PropertiesLoader());
-            String path = inputResolver.getImportPath() + table.option + ".csv";
-            csvLoader.loadCsvFile(path, table.option);
+            File file = new File(inputResolver.getImportPath() + table.option + ".csv");
+            csvLoader.loadCsvFile(file.getAbsolutePath(), table.option);
             return OperationResponse.success("Table " + table + " imported!");
         }
         catch (Exception e) {
