@@ -1,6 +1,3 @@
-// Ref: https://github.com/databricks/learning-spark/blob/master/mini-complete-example/src/main/java/com/oreilly/learningsparkexamples/mini/java/WordCount.java
-// Edited by: Anas Katib
-// Last updated: Aug. 23, 2017
 import clustering.AverageLengthOfStayClustering;
 import clustering.Clustering;
 import clustering.FrequencyClustering;
