@@ -28,6 +28,6 @@ public class FakeUsersService {
     }
 
     private String string(Object object) {
-        return "'" + object.toString() + "'";
+        return "'" + object + "'";
     }
 }

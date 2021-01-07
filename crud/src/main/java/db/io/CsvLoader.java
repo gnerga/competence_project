@@ -10,7 +10,7 @@ public class CsvLoader implements FileExporter{
     }
 
     public void loadCsvFile(String filePath, String table){
-        String loadQuery = "LOAD DATA INFILE '" + filePath + "' INTO TABLE " + table + "\n" +
+        String loadQuery = "LOAD DATA INFILE '"+ filePath +"' INTO TABLE " + table + "\n" +
                 "FIELDS TERMINATED BY ',' ENCLOSED BY '\\\"'\n" +
                 "LINES TERMINATED BY '" + System.lineSeparator() + "'";
 
