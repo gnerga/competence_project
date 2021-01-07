@@ -18,7 +18,7 @@ public class FrequencyClustering extends Clustering{
         Dataset<Row> dataset = spark.read().format("csv")
                 .option("sep", ",")
                 .option("inferSchema", "true")
-                .option("header", "true").load("./inputfiles/" + inputFileName);
+                .option("header", "true").load("./output/" + inputFileName);
         //groupBy
         Dataset<Row> nazwa = dataset.groupBy(groupByColumn).count();
 

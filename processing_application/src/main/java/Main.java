@@ -19,6 +19,8 @@ import java.time.Duration;
 public class Main {
 
     public static void main(String[] args) {
+        // Necessary to work on windows
+        System.setProperty("hadoop.home.dir", "C:\\hadoop");
         // Disable logging
         Logger.getLogger("org").setLevel(Level.OFF);
         Logger.getLogger("akka").setLevel(Level.OFF);
@@ -51,16 +53,16 @@ public class Main {
 
         StayAtPoint.countStayAtPoint(spark);
 
-        Clustering frequentUsers= getFrequencyClustering(spark);
+        Clustering frequentUsers = getFrequencyClustering(spark);
         frequentUsers.displayResult();
 
         Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
         averageLengthOfStayClustering.displayResult();
 
-        Ranking ranking = new Ranking(spark, "log_15000_duration.csv", "./ranking_output");
+        Ranking ranking = new Ranking(spark, "traces_duration.csv", "./ranking_output");
         ranking.displayResult();
 
-        MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
+        MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "traces_duration.csv", "./patterns_output");
         mostOftenVisitedHotspot.displayResult();
     }
 
@@ -70,7 +72,7 @@ public class Main {
         final String directoryNameToSave = "averageLengthOfStayClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_15000_duration.csv";
+        final String inputFileName = "traces_duration.csv";
         final String description = "Clustering points of interest by average length of stay";
         return new AverageLengthOfStayClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
     }
@@ -81,7 +83,7 @@ public class Main {
         final String directoryNameToSave = "frequencyUsersClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_15000_duration.csv";
+        final String inputFileName = "traces_duration.csv";
         final String description = "Clustering points of interest by user frequency";
     return new FrequencyClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
 }

@@ -1,7 +1,7 @@
 ### How to generate hotspot ranking:
 1. Create Ranking object
 ``` java
-Ranking ranking = new Ranking(spark, "log_15000_duration.csv", "./ranking_output");
+Ranking ranking = new Ranking(spark, "traces_duration.csv", "./ranking_output");
 ```
 Parameters: SparkSession, data file path, output directory path.
 
@@ -15,7 +15,7 @@ ranking.displayResult();
 ### How to generate most often visited destinations from hotspots pattern:
 1. Create MostOftenVisitedHotspot object
 ``` java
-MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
+MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "traces_duration.csv", "./patterns_output");
 ```
 Parameters: SparkSession, data file path, output directory path.
 
@@ -37,7 +37,7 @@ Clustering frequentUsers = getFrequencyClustering(spark);
         final String directoryNameToSave = "frequencyUsersClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_15000_duration.csv";
+        final String inputFileName = "traces_duration.csv";
         final String description = "Clustering points of interest by user frequency";
     return new FrequencyClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
 ```
@@ -61,7 +61,7 @@ Clustering averageLengthOfStayClustering = getAverageLengthOfStayClustering(spar
         final String directoryNameToSave = "averageLengthOfStayClustering";
         final boolean saveModel = true;
         final int numberOfCentroids = 3;
-        final String inputFileName = "log_15000_duration.csv";
+        final String inputFileName = "traces_duration.csv";
         final String description = "Clustering points of interest by average length of stay";
         return new AverageLengthOfStayClustering(groupByColumn,featureColumn,directoryNameToSave,saveModel,numberOfCentroids,inputFileName, description, spark);
     }
@@ -83,6 +83,8 @@ StayAtPoint.countStayAtPoint(spark);
 ```
 Parameters: spark.
 
+Remember to delete output directory before using this object!
+
 Result will be save in directory part1_5.
 
 ### How to Calculate  the  longest  route  taken  by  each  person:
@@ -91,6 +93,8 @@ Result will be save in directory part1_5.
 LongestRoute.countRoute(spark);
 ```
 Parameters: spark.
+
+Remember to delete output directory before using this object!
 
 Result will be save in directory part1_4.
 

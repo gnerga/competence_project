@@ -38,7 +38,7 @@ public class LongestRoute {
         Dataset<Row> dataset = spark.read().format("csv")
                 .option("sep", ",")
                 .schema(schema)
-                .option("header", "true").load("./inputfiles/log_15000_duration.csv");
+                .option("header", "true").load("./output/traces_duration.csv");
 
         Dataset<Trace> as = dataset.as(Encoders.bean(Trace.class));
 

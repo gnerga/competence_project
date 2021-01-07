@@ -57,7 +57,7 @@ public class MostOftenVisitedHotspot {
         Dataset<Row> dataset = spark.read().format("csv")
                 .option("sep", ",")
                 .schema(schema)
-                .option("header", "true").load("./inputfiles/" + inputFileName);
+                .option("header", "true").load("./output/" + inputFileName);
         return dataset;
     }
 }
