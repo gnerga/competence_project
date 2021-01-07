@@ -13,7 +13,7 @@ import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import part2.LongestRoute;
 import part2.StayAtPoint;
-import patterns.Patterns;
+import patterns.MostOftenVisitedHotspot;
 import ranking.Ranking;
 
 import java.time.Duration;
@@ -60,9 +60,11 @@ public class Main {
         Clustering averageLengthOfStayClustering= getAverageLengthOfStayClustering(spark);
         averageLengthOfStayClustering.displayResult();
 
-        Ranking ranking = new Ranking(spark);
+        Ranking ranking = new Ranking(spark, "log_15000_duration.csv", "./ranking_output");
+        ranking.displayResult();
 
-        Patterns patterns = new Patterns(spark);
+        MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
+        mostOftenVisitedHotspot.displayResult();
     }
 
     private static Clustering getAverageLengthOfStayClustering(SparkSession spark){
