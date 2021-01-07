@@ -1,13 +1,5 @@
 # GoodHotDog
 
-How to use this app:
-
-### Data generation
-    
-### CRUD operations
-    1. Run MySQL database
-    2. Initialize database using schema [as described here](./crud/docs/readme.md)
-### Clustering
-    1.
-### Ranking
-    1.
+Directory data_generator contains source code for data generation.
+Directory crud cointains source code for application which allows to import/export users and hotspots to/from database.
+Directory processing_application constains source code for application which clusters traces and ranks traces and hotspots.
