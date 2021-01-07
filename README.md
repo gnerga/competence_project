@@ -1,4 +1,4 @@
-# HoodHotDog
+# GoodHotDog
 
 How to use this app:
 
@@ -6,7 +6,7 @@ How to use this app:
     
 ### CRUD operations
     1. Run MySQL database
-    2. Initialize database using schema as described in crud/readme.md
+    2. Initialize database using schema [as described here](./crud/docs/readme.md)
 ### Clustering
     1.
 ### Ranking
