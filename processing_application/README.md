@@ -15,7 +15,7 @@ ranking.displayResult();
 ### How to generate most often visited destinations from hotspots pattern:
 1. Create MostOftenVisitedHotspot object
 ``` java
-ostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
+MostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
 ```
 Parameters: SparkSession, data file path, output directory path.
 
