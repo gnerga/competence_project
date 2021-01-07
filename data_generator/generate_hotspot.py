@@ -44,7 +44,7 @@ def generateHotspotPoint(centerLat, centerLong, filename):
 
 def return_list_of_hot_spots(file):
     list_of_hot_spots = []
-    df = pd.read_csv(file, delimiter=';', header=None)
+    df = pd.read_csv(file, delimiter=',', header=None)
 
     for index, row in df.iterrows():
         list_of_hot_spots.append(HotSpot(index+1, row[0], row[1], row[2], row[3], row[4]))
