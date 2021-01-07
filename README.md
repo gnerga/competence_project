@@ -1,4 +1,4 @@
-###How to generate hotspot ranking:
+### How to generate hotspot ranking:
 1. Create Ranking object
 ``` java
 Ranking ranking = new Ranking(spark, "log_15000_duration.csv", "./ranking_output");
@@ -12,7 +12,7 @@ You can also display results on console:
 ranking.displayResult();
 ```
 
-###How to generate most often visited destinations from hotspots pattern:
+### How to generate most often visited destinations from hotspots pattern:
 1. Create MostOftenVisitedHotspot object
 ``` java
 ostOftenVisitedHotspot mostOftenVisitedHotspot = new MostOftenVisitedHotspot(spark, "log_15000_duration.csv", "./patterns_output");
